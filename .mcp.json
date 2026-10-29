@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "excalidraw": {
+      "command": "bun",
+      "args": ["dist/bin.js"],
+      "env": {
+        "EXPRESS_SERVER_URL": "http://127.0.0.1:3000"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: bun install --frozen-lockfile
+      - run: bun run type-check
+      - run: bun run build
+      - run: bun run test
+      - name: Bundle still runs on Node
+        run: bun run test:node
+      - name: Browser regression (chromium)
+        run: |
+          bunx playwright install --with-deps chromium
+          bun run test:canvas

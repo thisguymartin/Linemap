@@ -1,0 +1,1001 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T19:18:33.780Z",
+  "title": "Design System: Linemap",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Day White",
+        "canonical": "oklch(100.0% 0.000 0.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0.0)",
+          "oklch(26.0% 0.000 0.0)",
+          "oklch(38.0% 0.000 0.0)",
+          "oklch(49.0% 0.000 0.0)",
+          "oklch(61.0% 0.000 0.0)",
+          "oklch(72.0% 0.000 0.0)",
+          "oklch(84.0% 0.000 0.0)",
+          "oklch(95.0% 0.000 0.0)"
+        ]
+      },
+      "bg-rail": {
+        "role": "neutral",
+        "displayName": "Rail Grey",
+        "canonical": "oklch(96.7% 0.000 0.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0.0)",
+          "oklch(26.0% 0.000 0.0)",
+          "oklch(38.0% 0.000 0.0)",
+          "oklch(49.0% 0.000 0.0)",
+          "oklch(61.0% 0.000 0.0)",
+          "oklch(72.0% 0.000 0.0)",
+          "oklch(84.0% 0.000 0.0)",
+          "oklch(95.0% 0.000 0.0)"
+        ]
+      },
+      "bg-sunk": {
+        "role": "neutral",
+        "displayName": "Sunk Grey",
+        "canonical": "oklch(93.9% 0.005 258.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.005 258.3)",
+          "oklch(26.0% 0.005 258.3)",
+          "oklch(38.0% 0.005 258.3)",
+          "oklch(49.0% 0.005 258.3)",
+          "oklch(61.0% 0.005 258.3)",
+          "oklch(72.0% 0.005 258.3)",
+          "oklch(84.0% 0.005 258.3)",
+          "oklch(95.0% 0.005 258.3)"
+        ]
+      },
+      "bg-float": {
+        "role": "neutral",
+        "displayName": "Float White",
+        "canonical": "oklch(100.0% 0.000 0.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0.0)",
+          "oklch(26.0% 0.000 0.0)",
+          "oklch(38.0% 0.000 0.0)",
+          "oklch(49.0% 0.000 0.0)",
+          "oklch(61.0% 0.000 0.0)",
+          "oklch(72.0% 0.000 0.0)",
+          "oklch(84.0% 0.000 0.0)",
+          "oklch(95.0% 0.000 0.0)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Signal Black",
+        "canonical": "oklch(20.8% 0.009 255.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 255.6)",
+          "oklch(26.0% 0.009 255.6)",
+          "oklch(38.0% 0.009 255.6)",
+          "oklch(49.0% 0.009 255.6)",
+          "oklch(61.0% 0.009 255.6)",
+          "oklch(72.0% 0.009 255.6)",
+          "oklch(84.0% 0.009 255.6)",
+          "oklch(95.0% 0.009 255.6)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Platform Grey",
+        "canonical": "oklch(42.9% 0.017 258.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.017 258.4)",
+          "oklch(26.0% 0.017 258.4)",
+          "oklch(38.0% 0.017 258.4)",
+          "oklch(49.0% 0.017 258.4)",
+          "oklch(61.0% 0.017 258.4)",
+          "oklch(72.0% 0.017 258.4)",
+          "oklch(84.0% 0.017 258.4)",
+          "oklch(95.0% 0.017 258.4)"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Timetable Grey",
+        "canonical": "oklch(53.6% 0.016 258.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.016 258.4)",
+          "oklch(26.0% 0.016 258.4)",
+          "oklch(38.0% 0.016 258.4)",
+          "oklch(49.0% 0.016 258.4)",
+          "oklch(61.0% 0.016 258.4)",
+          "oklch(72.0% 0.016 258.4)",
+          "oklch(84.0% 0.016 258.4)",
+          "oklch(95.0% 0.016 258.4)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(90.3% 0.008 260.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.008 260.7)",
+          "oklch(26.0% 0.008 260.7)",
+          "oklch(38.0% 0.008 260.7)",
+          "oklch(49.0% 0.008 260.7)",
+          "oklch(61.0% 0.008 260.7)",
+          "oklch(72.0% 0.008 260.7)",
+          "oklch(84.0% 0.008 260.7)",
+          "oklch(95.0% 0.008 260.7)"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Hairline Strong",
+        "canonical": "oklch(80.3% 0.014 258.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.014 258.4)",
+          "oklch(26.0% 0.014 258.4)",
+          "oklch(38.0% 0.014 258.4)",
+          "oklch(49.0% 0.014 258.4)",
+          "oklch(61.0% 0.014 258.4)",
+          "oklch(72.0% 0.014 258.4)",
+          "oklch(84.0% 0.014 258.4)",
+          "oklch(95.0% 0.014 258.4)"
+        ]
+      },
+      "station-fill": {
+        "role": "neutral",
+        "displayName": "Station Fill",
+        "canonical": "oklch(100.0% 0.000 0.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0.0)",
+          "oklch(26.0% 0.000 0.0)",
+          "oklch(38.0% 0.000 0.0)",
+          "oklch(49.0% 0.000 0.0)",
+          "oklch(61.0% 0.000 0.0)",
+          "oklch(72.0% 0.000 0.0)",
+          "oklch(84.0% 0.000 0.0)",
+          "oklch(95.0% 0.000 0.0)"
+        ]
+      },
+      "station-ring": {
+        "role": "neutral",
+        "displayName": "Station Ring",
+        "canonical": "oklch(20.8% 0.009 255.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 255.6)",
+          "oklch(26.0% 0.009 255.6)",
+          "oklch(38.0% 0.009 255.6)",
+          "oklch(49.0% 0.009 255.6)",
+          "oklch(61.0% 0.009 255.6)",
+          "oklch(72.0% 0.009 255.6)",
+          "oklch(84.0% 0.009 255.6)",
+          "oklch(95.0% 0.009 255.6)"
+        ]
+      },
+      "route": {
+        "role": "primary",
+        "displayName": "Default Route Blue",
+        "canonical": "oklch(50.5% 0.203 263.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.190 263.9)",
+          "oklch(26.0% 0.190 263.9)",
+          "oklch(38.0% 0.190 263.9)",
+          "oklch(49.0% 0.190 263.9)",
+          "oklch(61.0% 0.190 263.9)",
+          "oklch(72.0% 0.190 263.9)",
+          "oklch(84.0% 0.190 263.9)",
+          "oklch(95.0% 0.190 263.9)"
+        ]
+      },
+      "route-ink": {
+        "role": "primary",
+        "displayName": "Route Ink",
+        "canonical": "oklch(100.0% 0.000 0.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 0.0)",
+          "oklch(26.0% 0.000 0.0)",
+          "oklch(38.0% 0.000 0.0)",
+          "oklch(49.0% 0.000 0.0)",
+          "oklch(61.0% 0.000 0.0)",
+          "oklch(72.0% 0.000 0.0)",
+          "oklch(84.0% 0.000 0.0)",
+          "oklch(95.0% 0.000 0.0)"
+        ]
+      },
+      "ok": {
+        "role": "state",
+        "displayName": "Confirmed Green",
+        "canonical": "oklch(52.5% 0.136 149.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.136 149.1)",
+          "oklch(26.0% 0.136 149.1)",
+          "oklch(38.0% 0.136 149.1)",
+          "oklch(49.0% 0.136 149.1)",
+          "oklch(61.0% 0.136 149.1)",
+          "oklch(72.0% 0.136 149.1)",
+          "oklch(84.0% 0.136 149.1)",
+          "oklch(95.0% 0.136 149.1)"
+        ]
+      },
+      "ok-text": {
+        "role": "state",
+        "displayName": "Confirmed Green Text",
+        "canonical": "oklch(48.1% 0.122 149.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.122 149.5)",
+          "oklch(26.0% 0.122 149.5)",
+          "oklch(38.0% 0.122 149.5)",
+          "oklch(49.0% 0.122 149.5)",
+          "oklch(61.0% 0.122 149.5)",
+          "oklch(72.0% 0.122 149.5)",
+          "oklch(84.0% 0.122 149.5)",
+          "oklch(95.0% 0.122 149.5)"
+        ]
+      },
+      "warn": {
+        "role": "state",
+        "displayName": "Unconfirmed Amber",
+        "canonical": "oklch(56.5% 0.138 56.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.138 56.1)",
+          "oklch(26.0% 0.138 56.1)",
+          "oklch(38.0% 0.138 56.1)",
+          "oklch(49.0% 0.138 56.1)",
+          "oklch(61.0% 0.138 56.1)",
+          "oklch(72.0% 0.138 56.1)",
+          "oklch(84.0% 0.138 56.1)",
+          "oklch(95.0% 0.138 56.1)"
+        ]
+      },
+      "warn-text": {
+        "role": "state",
+        "displayName": "Unconfirmed Amber Text",
+        "canonical": "oklch(50.2% 0.122 56.9)",
+        "tonalRamp": [
+          "oklch(15.0% 0.122 56.9)",
+          "oklch(26.0% 0.122 56.9)",
+          "oklch(38.0% 0.122 56.9)",
+          "oklch(49.0% 0.122 56.9)",
+          "oklch(61.0% 0.122 56.9)",
+          "oklch(72.0% 0.122 56.9)",
+          "oklch(84.0% 0.122 56.9)",
+          "oklch(95.0% 0.122 56.9)"
+        ]
+      },
+      "err": {
+        "role": "state",
+        "displayName": "Signal Red",
+        "canonical": "oklch(50.0% 0.182 29.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.182 29.5)",
+          "oklch(26.0% 0.182 29.5)",
+          "oklch(38.0% 0.182 29.5)",
+          "oklch(49.0% 0.182 29.5)",
+          "oklch(61.0% 0.182 29.5)",
+          "oklch(72.0% 0.182 29.5)",
+          "oklch(84.0% 0.182 29.5)",
+          "oklch(95.0% 0.182 29.5)"
+        ]
+      },
+      "new": {
+        "role": "state",
+        "displayName": "Arrival Gold",
+        "canonical": "oklch(67.9% 0.142 76.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.142 76.5)",
+          "oklch(26.0% 0.142 76.5)",
+          "oklch(38.0% 0.142 76.5)",
+          "oklch(49.0% 0.142 76.5)",
+          "oklch(61.0% 0.142 76.5)",
+          "oklch(72.0% 0.142 76.5)",
+          "oklch(84.0% 0.142 76.5)",
+          "oklch(95.0% 0.142 76.5)"
+        ]
+      },
+      "new-text": {
+        "role": "state",
+        "displayName": "Arrival Gold Text",
+        "canonical": "oklch(50.6% 0.105 78.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.105 78.5)",
+          "oklch(26.0% 0.105 78.5)",
+          "oklch(38.0% 0.105 78.5)",
+          "oklch(49.0% 0.105 78.5)",
+          "oklch(61.0% 0.105 78.5)",
+          "oklch(72.0% 0.105 78.5)",
+          "oklch(84.0% 0.105 78.5)",
+          "oklch(95.0% 0.105 78.5)"
+        ]
+      },
+      "bg-night": {
+        "role": "neutral",
+        "displayName": "Night Ground",
+        "canonical": "oklch(18.6% 0.007 258.4)",
+        "tonalRamp": [
+          "oklch(15.0% 0.007 258.4)",
+          "oklch(26.0% 0.007 258.4)",
+          "oklch(38.0% 0.007 258.4)",
+          "oklch(49.0% 0.007 258.4)",
+          "oklch(61.0% 0.007 258.4)",
+          "oklch(72.0% 0.007 258.4)",
+          "oklch(84.0% 0.007 258.4)",
+          "oklch(95.0% 0.007 258.4)"
+        ]
+      },
+      "bg-rail-night": {
+        "role": "neutral",
+        "displayName": "Night Rail",
+        "canonical": "oklch(22.1% 0.009 255.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 255.6)",
+          "oklch(26.0% 0.009 255.6)",
+          "oklch(38.0% 0.009 255.6)",
+          "oklch(49.0% 0.009 255.6)",
+          "oklch(61.0% 0.009 255.6)",
+          "oklch(72.0% 0.009 255.6)",
+          "oklch(84.0% 0.009 255.6)",
+          "oklch(95.0% 0.009 255.6)"
+        ]
+      },
+      "bg-sunk-night": {
+        "role": "neutral",
+        "displayName": "Night Sunk",
+        "canonical": "oklch(16.2% 0.005 248.2)",
+        "tonalRamp": [
+          "oklch(15.0% 0.005 248.2)",
+          "oklch(26.0% 0.005 248.2)",
+          "oklch(38.0% 0.005 248.2)",
+          "oklch(49.0% 0.005 248.2)",
+          "oklch(61.0% 0.005 248.2)",
+          "oklch(72.0% 0.005 248.2)",
+          "oklch(84.0% 0.005 248.2)",
+          "oklch(95.0% 0.005 248.2)"
+        ]
+      },
+      "bg-float-night": {
+        "role": "neutral",
+        "displayName": "Night Float",
+        "canonical": "oklch(24.6% 0.011 254.0)",
+        "tonalRamp": [
+          "oklch(15.0% 0.011 254.0)",
+          "oklch(26.0% 0.011 254.0)",
+          "oklch(38.0% 0.011 254.0)",
+          "oklch(49.0% 0.011 254.0)",
+          "oklch(61.0% 0.011 254.0)",
+          "oklch(72.0% 0.011 254.0)",
+          "oklch(84.0% 0.011 254.0)",
+          "oklch(95.0% 0.011 254.0)"
+        ]
+      },
+      "ink-night": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "oklch(93.6% 0.005 258.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.005 258.3)",
+          "oklch(26.0% 0.005 258.3)",
+          "oklch(38.0% 0.005 258.3)",
+          "oklch(49.0% 0.005 258.3)",
+          "oklch(61.0% 0.005 258.3)",
+          "oklch(72.0% 0.005 258.3)",
+          "oklch(84.0% 0.005 258.3)",
+          "oklch(95.0% 0.005 258.3)"
+        ]
+      },
+      "ink-2-night": {
+        "role": "neutral",
+        "displayName": "Night Platform Grey",
+        "canonical": "oklch(77.4% 0.012 252.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.012 252.1)",
+          "oklch(26.0% 0.012 252.1)",
+          "oklch(38.0% 0.012 252.1)",
+          "oklch(49.0% 0.012 252.1)",
+          "oklch(61.0% 0.012 252.1)",
+          "oklch(72.0% 0.012 252.1)",
+          "oklch(84.0% 0.012 252.1)",
+          "oklch(95.0% 0.012 252.1)"
+        ]
+      },
+      "ink-3-night": {
+        "role": "neutral",
+        "displayName": "Night Timetable Grey",
+        "canonical": "oklch(63.4% 0.015 251.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.015 251.6)",
+          "oklch(26.0% 0.015 251.6)",
+          "oklch(38.0% 0.015 251.6)",
+          "oklch(49.0% 0.015 251.6)",
+          "oklch(61.0% 0.015 251.6)",
+          "oklch(72.0% 0.015 251.6)",
+          "oklch(84.0% 0.015 251.6)",
+          "oklch(95.0% 0.015 251.6)"
+        ]
+      },
+      "rule-night": {
+        "role": "neutral",
+        "displayName": "Night Hairline",
+        "canonical": "oklch(30.3% 0.014 256.8)",
+        "tonalRamp": [
+          "oklch(15.0% 0.014 256.8)",
+          "oklch(26.0% 0.014 256.8)",
+          "oklch(38.0% 0.014 256.8)",
+          "oklch(49.0% 0.014 256.8)",
+          "oklch(61.0% 0.014 256.8)",
+          "oklch(72.0% 0.014 256.8)",
+          "oklch(84.0% 0.014 256.8)",
+          "oklch(95.0% 0.014 256.8)"
+        ]
+      },
+      "rule-strong-night": {
+        "role": "neutral",
+        "displayName": "Night Hairline Strong",
+        "canonical": "oklch(38.4% 0.018 254.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.018 254.7)",
+          "oklch(26.0% 0.018 254.7)",
+          "oklch(38.0% 0.018 254.7)",
+          "oklch(49.0% 0.018 254.7)",
+          "oklch(61.0% 0.018 254.7)",
+          "oklch(72.0% 0.018 254.7)",
+          "oklch(84.0% 0.018 254.7)",
+          "oklch(95.0% 0.018 254.7)"
+        ]
+      },
+      "ok-night": {
+        "role": "state",
+        "displayName": "Night Confirmed Green",
+        "canonical": "oklch(80.0% 0.182 151.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.182 151.7)",
+          "oklch(26.0% 0.182 151.7)",
+          "oklch(38.0% 0.182 151.7)",
+          "oklch(49.0% 0.182 151.7)",
+          "oklch(61.0% 0.182 151.7)",
+          "oklch(72.0% 0.182 151.7)",
+          "oklch(84.0% 0.182 151.7)",
+          "oklch(95.0% 0.182 151.7)"
+        ]
+      },
+      "warn-night": {
+        "role": "state",
+        "displayName": "Night Unconfirmed Amber",
+        "canonical": "oklch(77.3% 0.138 66.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.138 66.3)",
+          "oklch(26.0% 0.138 66.3)",
+          "oklch(38.0% 0.138 66.3)",
+          "oklch(49.0% 0.138 66.3)",
+          "oklch(61.0% 0.138 66.3)",
+          "oklch(72.0% 0.138 66.3)",
+          "oklch(84.0% 0.138 66.3)",
+          "oklch(95.0% 0.138 66.3)"
+        ]
+      },
+      "err-night": {
+        "role": "state",
+        "displayName": "Night Signal Red",
+        "canonical": "oklch(71.1% 0.166 22.2)",
+        "tonalRamp": [
+          "oklch(15.0% 0.166 22.2)",
+          "oklch(26.0% 0.166 22.2)",
+          "oklch(38.0% 0.166 22.2)",
+          "oklch(49.0% 0.166 22.2)",
+          "oklch(61.0% 0.166 22.2)",
+          "oklch(72.0% 0.166 22.2)",
+          "oklch(84.0% 0.166 22.2)",
+          "oklch(95.0% 0.166 22.2)"
+        ]
+      },
+      "new-night": {
+        "role": "state",
+        "displayName": "Night Arrival Gold",
+        "canonical": "oklch(80.4% 0.156 82.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.156 82.5)",
+          "oklch(26.0% 0.156 82.5)",
+          "oklch(38.0% 0.156 82.5)",
+          "oklch(49.0% 0.156 82.5)",
+          "oklch(61.0% 0.156 82.5)",
+          "oklch(72.0% 0.156 82.5)",
+          "oklch(84.0% 0.156 82.5)",
+          "oklch(95.0% 0.156 82.5)"
+        ]
+      },
+      "line-amber": {
+        "role": "primary",
+        "displayName": "Amber Line",
+        "canonical": "oklch(76.9% 0.165 70.1)",
+        "tonalRamp": [
+          "oklch(15.0% 0.165 70.1)",
+          "oklch(26.0% 0.165 70.1)",
+          "oklch(38.0% 0.165 70.1)",
+          "oklch(49.0% 0.165 70.1)",
+          "oklch(61.0% 0.165 70.1)",
+          "oklch(72.0% 0.165 70.1)",
+          "oklch(84.0% 0.165 70.1)",
+          "oklch(95.0% 0.165 70.1)"
+        ]
+      },
+      "line-emerald": {
+        "role": "primary",
+        "displayName": "Emerald Line",
+        "canonical": "oklch(69.6% 0.149 162.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.149 162.5)",
+          "oklch(26.0% 0.149 162.5)",
+          "oklch(38.0% 0.149 162.5)",
+          "oklch(49.0% 0.149 162.5)",
+          "oklch(61.0% 0.149 162.5)",
+          "oklch(72.0% 0.149 162.5)",
+          "oklch(84.0% 0.149 162.5)",
+          "oklch(95.0% 0.149 162.5)"
+        ]
+      },
+      "line-blue": {
+        "role": "primary",
+        "displayName": "Blue Line",
+        "canonical": "oklch(62.3% 0.188 259.8)",
+        "tonalRamp": [
+          "oklch(15.0% 0.188 259.8)",
+          "oklch(26.0% 0.188 259.8)",
+          "oklch(38.0% 0.188 259.8)",
+          "oklch(49.0% 0.188 259.8)",
+          "oklch(61.0% 0.188 259.8)",
+          "oklch(72.0% 0.188 259.8)",
+          "oklch(84.0% 0.188 259.8)",
+          "oklch(95.0% 0.188 259.8)"
+        ]
+      },
+      "line-violet": {
+        "role": "primary",
+        "displayName": "Violet Line",
+        "canonical": "oklch(60.6% 0.219 292.7)",
+        "tonalRamp": [
+          "oklch(15.0% 0.190 292.7)",
+          "oklch(26.0% 0.190 292.7)",
+          "oklch(38.0% 0.190 292.7)",
+          "oklch(49.0% 0.190 292.7)",
+          "oklch(61.0% 0.190 292.7)",
+          "oklch(72.0% 0.190 292.7)",
+          "oklch(84.0% 0.190 292.7)",
+          "oklch(95.0% 0.190 292.7)"
+        ]
+      },
+      "line-pink": {
+        "role": "primary",
+        "displayName": "Pink Line",
+        "canonical": "oklch(65.6% 0.212 354.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.190 354.3)",
+          "oklch(26.0% 0.190 354.3)",
+          "oklch(38.0% 0.190 354.3)",
+          "oklch(49.0% 0.190 354.3)",
+          "oklch(61.0% 0.190 354.3)",
+          "oklch(72.0% 0.190 354.3)",
+          "oklch(84.0% 0.190 354.3)",
+          "oklch(95.0% 0.190 354.3)"
+        ]
+      },
+      "line-red": {
+        "role": "primary",
+        "displayName": "Red Line",
+        "canonical": "oklch(63.7% 0.208 25.3)",
+        "tonalRamp": [
+          "oklch(15.0% 0.190 25.3)",
+          "oklch(26.0% 0.190 25.3)",
+          "oklch(38.0% 0.190 25.3)",
+          "oklch(49.0% 0.190 25.3)",
+          "oklch(61.0% 0.190 25.3)",
+          "oklch(72.0% 0.190 25.3)",
+          "oklch(84.0% 0.190 25.3)",
+          "oklch(95.0% 0.190 25.3)"
+        ]
+      },
+      "line-teal": {
+        "role": "primary",
+        "displayName": "Teal Line",
+        "canonical": "oklch(70.4% 0.123 182.5)",
+        "tonalRamp": [
+          "oklch(15.0% 0.123 182.5)",
+          "oklch(26.0% 0.123 182.5)",
+          "oklch(38.0% 0.123 182.5)",
+          "oklch(49.0% 0.123 182.5)",
+          "oklch(61.0% 0.123 182.5)",
+          "oklch(72.0% 0.123 182.5)",
+          "oklch(84.0% 0.123 182.5)",
+          "oklch(95.0% 0.123 182.5)"
+        ]
+      },
+      "line-orange": {
+        "role": "primary",
+        "displayName": "Orange Line",
+        "canonical": "oklch(70.5% 0.187 47.6)",
+        "tonalRamp": [
+          "oklch(15.0% 0.187 47.6)",
+          "oklch(26.0% 0.187 47.6)",
+          "oklch(38.0% 0.187 47.6)",
+          "oklch(49.0% 0.187 47.6)",
+          "oklch(61.0% 0.187 47.6)",
+          "oklch(72.0% 0.187 47.6)",
+          "oklch(84.0% 0.187 47.6)",
+          "oklch(95.0% 0.187 47.6)"
+        ]
+      }
+    },
+    "derivedColors": {
+      "route-btn": {
+        "source": "frontend/src/color.ts routeTokens()",
+        "rule": "the project route shifted toward black until white text clears 4.5:1; used for primary button faces"
+      },
+      "route-text": {
+        "source": "frontend/src/color.ts routeTokens()",
+        "rule": "the project route shifted toward black (day) or white (night) until it clears 4.5:1 on the ground; used for route-coloured text and link hover"
+      },
+      "route-soft": {
+        "source": "frontend/src/styles.css",
+        "value": "color-mix(in srgb, var(--route) 12%, var(--bg))",
+        "rule": "hover wash, pressed state, agent avatar, route pill"
+      },
+      "route-line": {
+        "source": "frontend/src/styles.css",
+        "value": "day: color-mix(in srgb, var(--route) 85%, var(--ink)); night: color-mix(in srgb, var(--route) 80%, #ffffff)",
+        "rule": "the rail, the track segments, the map route"
+      },
+      "ok-soft": {
+        "value": "color-mix(in srgb, var(--ok) 14%, var(--bg))"
+      },
+      "warn-soft": {
+        "value": "color-mix(in srgb, var(--warn) 14%, var(--bg))"
+      },
+      "err-soft": {
+        "value": "color-mix(in srgb, var(--err) 12%, var(--bg))"
+      },
+      "new-soft": {
+        "value": "color-mix(in srgb, var(--new) 16%, var(--bg))"
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page h1 on Projects and the project map; the only size above 15px in use."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Diagram title in the top bar and project row titles; the version number uses the same size at 700."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Base UI size; buttons and tab labels at 500; note bodies at 1.5 line-height."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Readout, timestamps, descriptions, table cells, field labels, empty states."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase section headers in the panel and on pages; table headers at 11px."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Pills and count badges; chips at 400, tags at 500, tooltips at 400."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Only the context-digest <pre> on the project page."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-float",
+        "value": "0 10px 28px -10px rgba(21, 24, 28, 0.28), 0 2px 6px -2px rgba(21, 24, 28, 0.14)",
+        "purpose": "Day: the scene banner, the toast, the \u2264900px panel overlay. Nothing at rest."
+      },
+      {
+        "name": "shadow-float-night",
+        "value": "0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 2px 6px -2px rgba(0, 0, 0, 0.5)",
+        "purpose": "Night value of the same token."
+      },
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 3px color-mix(in srgb, var(--route) 22%, transparent)",
+        "purpose": "Input focus; a ring, not depth."
+      },
+      {
+        "name": "interchange-ring",
+        "value": "0 0 0 2px var(--station-fill), 0 0 0 3.5px var(--station-ring)",
+        "purpose": "The double ring on a linked station in the station line; a ring, not depth."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The only easing; every transition and keyframe uses it."
+      },
+      {
+        "name": "t-fast",
+        "value": "140ms",
+        "purpose": "Hover, colour, transform."
+      },
+      {
+        "name": "t-base",
+        "value": "220ms",
+        "purpose": "Panel collapse, row rerank (view transition), toast-in."
+      },
+      {
+        "name": "t-slow",
+        "value": "420ms",
+        "purpose": "Station arrival (arrive: scale 0.6 to 1)."
+      },
+      {
+        "name": "ride",
+        "value": "900ms var(--ease-out) 1",
+        "purpose": "The train riding the station-line track on autosave."
+      },
+      {
+        "name": "ring",
+        "value": "1.4s var(--ease-out) 1",
+        "purpose": "The map active-station ring expanding from r 9 to 22 and fading."
+      },
+      {
+        "name": "pulse",
+        "value": "1s ease-in-out infinite",
+        "purpose": "The syncing readout dot."
+      },
+      {
+        "name": "spin",
+        "value": "0.8s linear infinite",
+        "purpose": "Busy-button spinner."
+      },
+      {
+        "name": "view-transition",
+        "value": "document.startViewTransition at var(--t-base) var(--ease-out)",
+        "purpose": "Rows rerank in place (stops, notes); off under reduced motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "all durations 0.01ms; train and map marker hidden",
+        "purpose": "prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "900px",
+        "purpose": "Top bar to two columns; station line and readout text hidden; panel becomes a right overlay (provisional)."
+      },
+      {
+        "name": "narrow",
+        "value": "600px",
+        "purpose": "Map footer stacks; map key becomes a two-column grid."
+      },
+      {
+        "name": "page-max",
+        "value": "1100px",
+        "purpose": "Max content width on Projects and project map pages."
+      },
+      {
+        "name": "map-min",
+        "value": "640px",
+        "purpose": "Minimum width of the transit map SVG; scrolls horizontally below it."
+      }
+    ],
+    "dimensions": {
+      "topbar-h": "48px",
+      "panel-w": "360px",
+      "gutter": "16px",
+      "control-h": "30px",
+      "control-h-sm": "26px",
+      "input-min-h": "32px",
+      "tab-h": "40px"
+    },
+    "stationSizeRamp": {
+      "0": "8px",
+      "<=5": "10px",
+      "<=30": "12px",
+      ">30": "14px",
+      "source": "frontend/src/components/StationLine.tsx stationSize()"
+    },
+    "routePalette": {
+      "source": "src/domain/model.ts DEFAULT_PROJECT_COLORS",
+      "keys": [
+        "line-amber",
+        "line-emerald",
+        "line-blue",
+        "line-violet",
+        "line-pink",
+        "line-red",
+        "line-teal",
+        "line-orange"
+      ]
+    },
+    "iconSet": {
+      "source": "frontend/src/icons.tsx",
+      "grid": "16px",
+      "stroke": "1.5px",
+      "caps": "round",
+      "names": [
+        "save",
+        "check",
+        "restore",
+        "trash",
+        "panel",
+        "sun",
+        "moon",
+        "map",
+        "list",
+        "plus",
+        "send",
+        "link",
+        "tag",
+        "chevron",
+        "x",
+        "bot",
+        "user",
+        "copy",
+        "locate",
+        "arrow",
+        "edit",
+        "inbox",
+        "reopen",
+        "train"
+      ]
+    },
+    "notCanonized": [
+      "Project page boxes: .map-wrap, the conversation thread (inline style in ProjectPage.tsx) and .brain wrap content in 1px --rule borders with --radius-lg; the contract and the panel use hairline sections. Carried defect, not a rule.",
+      "Small-screen panel ships as an absolute right-edge overlay with --shadow-float at \u2264900px; the contract listed a bottom sheet as unresolved. Provisional, not a rule."
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one route-coloured action per screen (\"Save version\"); face and ink are the per-route derived tokens so white-on-route always clears 4.5:1.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 2.5h6.5L13.5 5v8.5a1 1 0 0 1-1 1h-9a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1z\"/><path d=\"M5.5 2.5v4h5v-4M5.5 14.5v-4.5h5v4.5\"/></svg> Save version</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:30px;padding:0 12px;border-radius:var(--radius,6px);border:1px solid var(--rule-strong,#b9bfc8);background:var(--bg-float,#fff);color:var(--ink,#15181c);font:500 13px/1.45 \"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;cursor:pointer;user-select:none;transition:background 140ms cubic-bezier(0.16, 1, 0.3, 1),border-color 140ms cubic-bezier(0.16, 1, 0.3, 1),color 140ms,transform 140ms}.ds-btn-primary svg{width:16px;height:16px;flex:0 0 auto}.ds-btn-primary:hover{border-color:var(--ink-3,#686e77);background:var(--bg-rail,#f3f4f6)}.ds-btn-primary:active{transform:translateY(1px)}.ds-btn-primary:focus-visible{outline:2px solid var(--route,#2457d6);outline-offset:2px}.ds-btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none}.ds-btn-primary{background:var(--route-btn,var(--route,#2457d6));border-color:var(--route-btn,var(--route,#2457d6));color:var(--route-ink,#fff)}.ds-btn-primary:hover{background:color-mix(in srgb,var(--route-btn,var(--route,#2457d6)) 88%,var(--ink,#15181c));border-color:color-mix(in srgb,var(--route-btn,var(--route,#2457d6)) 88%,var(--ink,#15181c))}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Borderless secondary action; hover is the 12% route wash. Add .ds-btn-ghost-sm for the 26px row-action size and .ds-btn-ghost-danger for delete.",
+      "html": "<button class=\"ds-btn-ghost\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M10.5 2.5l3 3-8 8h-3v-3z\"/><path d=\"M9 4l3 3\"/></svg> Add a note</button> <button class=\"ds-btn-ghost ds-btn-ghost-sm ds-btn-ghost-danger\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 4.5h10M6.5 4.5v-2h3v2M4.5 4.5l.6 9h5.8l.6-9\"/></svg> Delete</button>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:30px;padding:0 12px;border-radius:var(--radius,6px);border:1px solid var(--rule-strong,#b9bfc8);background:var(--bg-float,#fff);color:var(--ink,#15181c);font:500 13px/1.45 \"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap;cursor:pointer;user-select:none;transition:background 140ms cubic-bezier(0.16, 1, 0.3, 1),border-color 140ms cubic-bezier(0.16, 1, 0.3, 1),color 140ms,transform 140ms}.ds-btn-ghost svg{width:16px;height:16px;flex:0 0 auto}.ds-btn-ghost:hover{border-color:var(--ink-3,#686e77);background:var(--bg-rail,#f3f4f6)}.ds-btn-ghost:active{transform:translateY(1px)}.ds-btn-ghost:focus-visible{outline:2px solid var(--route,#2457d6);outline-offset:2px}.ds-btn-ghost:disabled{opacity:.45;cursor:not-allowed;transform:none}.ds-btn-ghost{border-color:transparent;background:transparent}.ds-btn-ghost:hover{background:var(--route-soft,color-mix(in srgb,var(--route,#2457d6) 12%,var(--bg,#fff)));border-color:transparent}.ds-btn-ghost-sm{height:26px;padding:0 8px;font-size:12px}.ds-btn-ghost-sm svg{width:12px;height:12px}.ds-btn-ghost-danger{color:var(--err-text,#b42318)}.ds-btn-ghost-danger:hover{background:var(--err-soft,color-mix(in srgb,var(--err,#b42318) 12%,var(--bg,#fff)));border-color:var(--err,#b42318)}"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Text field with its 12px label; focus swaps the hairline for the route and adds a 3px 22% route ring.",
+      "html": "<label class=\"ds-field\"><span>Version label</span><input class=\"ds-input\" type=\"text\" placeholder=\"Label for v4 (optional)\"></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:4px;width:280px;font:13px/1.45 \"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", sans-serif;color:var(--ink,#15181c)}.ds-field>span{font-size:12px;font-weight:500;color:var(--ink-2,#4a5059)}.ds-input{width:100%;min-height:32px;padding:6px 10px;border-radius:var(--radius,6px);border:1px solid var(--rule-strong,#b9bfc8);background:var(--bg,#fff);color:inherit;font:inherit;font-variant-numeric:tabular-nums;transition:border-color 140ms,box-shadow 140ms}.ds-input::placeholder{color:var(--ink-3,#686e77)}.ds-input:hover{border-color:var(--ink-3,#686e77)}.ds-input:focus,.ds-input:focus-visible{outline:none;border-color:var(--route,#2457d6);box-shadow:0 0 0 3px color-mix(in srgb,var(--route,#2457d6) 22%,transparent)}"
+    },
+    {
+      "name": "Panel Tabs",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "The 40px tab strip on a hairline; the selected tab carries a 2px route underline inset 8px; counts are Sunk Grey badges, gold when something new arrived.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\">Versions <span class=\"ds-tab-count\">3</span></button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Notes <span class=\"ds-tab-count\" data-new=\"true\">4</span></button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Context</button></div>",
+      "css": ".ds-tabs{display:flex;padding:0 8px;border-bottom:1px solid var(--rule,#dcdfe4);background:var(--bg-rail,#f3f4f6);width:360px;font:13px/1.45 \"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", sans-serif}.ds-tab{position:relative;height:40px;padding:0 10px;border:0;background:transparent;color:var(--ink-2,#4a5059);font:inherit;font-weight:500;display:inline-flex;align-items:center;gap:6px;cursor:pointer;transition:color 140ms}.ds-tab:hover{color:var(--ink,#15181c)}.ds-tab:focus-visible{outline:2px solid var(--route,#2457d6);outline-offset:-2px;border-radius:3px}.ds-tab[aria-selected=\"true\"]{color:var(--ink,#15181c)}.ds-tab[aria-selected=\"true\"]::after{content:\"\";position:absolute;left:8px;right:8px;bottom:-1px;height:2px;background:var(--route,#2457d6)}.ds-tab-count{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--bg-sunk,#e9ebee);color:var(--ink-2,#4a5059);font-size:11px;font-weight:600;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;justify-content:center}.ds-tab-count[data-new=\"true\"]{background:var(--new-soft,color-mix(in srgb,var(--new,#c98a00) 16%,var(--bg,#fff)));color:var(--new-text,#855c00)}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Anchored-element chip (a button with the locate icon; hover turns it route) and the dashed #tag chip.",
+      "html": "<span class=\"ds-chips\"><button class=\"ds-chip\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"3\"/><path d=\"M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2\"/></svg> 50 gal tank</button><button class=\"ds-chip\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"3\"/><path d=\"M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2\"/></svg> Burner 40k BTU</button><span class=\"ds-chip ds-chip-tag\">#gas</span><button class=\"ds-chip ds-chip-tag\">#safety <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4l8 8M12 4l-8 8\"/></svg></button></span>",
+      "css": ".ds-chips{display:inline-flex;flex-wrap:wrap;gap:4px;font:13px/1.45 \"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", sans-serif}.ds-chip{display:inline-flex;align-items:center;gap:4px;height:20px;padding:0 7px;border-radius:4px;border:1px solid var(--rule-strong,#b9bfc8);background:var(--bg,#fff);color:var(--ink-2,#4a5059);font:inherit;font-size:11px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:border-color 140ms,color 140ms}.ds-chip svg{width:11px;height:11px;flex:0 0 auto}.ds-chip-tag{border-style:dashed}button.ds-chip{cursor:pointer}button.ds-chip:hover{border-color:var(--route,#2457d6);color:var(--route-text,var(--route,#2457d6))}button.ds-chip:focus-visible{outline:2px solid var(--route,#2457d6);outline-offset:2px}"
+    },
+    {
+      "name": "Pill",
+      "kind": "chip",
+      "refersTo": "pill-ok",
+      "description": "State pills: confirmed (green), unconfirmed (amber), on canvas (route). 18px, round-ended, 11px/600; the only place the state hues appear as fills.",
+      "html": "<span class=\"ds-pills\"><span class=\"ds-pill ds-pill-ok\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8.5l3 3 7-7\"/></svg> confirmed</span><span class=\"ds-pill ds-pill-warn\">unconfirmed</span><span class=\"ds-pill ds-pill-route\">on canvas</span><span class=\"ds-pill ds-pill-ok\">v3 <svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8.5l3 3 7-7\"/></svg></span></span>",
+      "css": ".ds-pills{display:inline-flex;gap:8px;align-items:center;font:13px/1.45 \"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", sans-serif}.ds-pill{display:inline-flex;align-items:center;gap:4px;height:18px;padding:0 7px;border-radius:9px;font-size:11px;font-weight:600;letter-spacing:.01em;font-variant-numeric:tabular-nums}.ds-pill svg{width:11px;height:11px}.ds-pill-ok{background:var(--ok-soft,color-mix(in srgb,var(--ok,#1b7f3b) 14%,var(--bg,#fff)));color:var(--ok-text,#187035)}.ds-pill-warn{background:var(--warn-soft,color-mix(in srgb,var(--warn,#b15c00) 14%,var(--bg,#fff)));color:var(--warn-text,#964e00)}.ds-pill-route{background:var(--route-soft,color-mix(in srgb,var(--route,#2457d6) 12%,var(--bg,#fff)));color:var(--route-text,var(--route,#2457d6))}"
+    },
+    {
+      "name": "Station Line",
+      "kind": "custom",
+      "refersTo": "station",
+      "description": "The signature move: sibling diagrams as stations on the route. Dot size follows element count (8/10/12/14); the on-canvas station wears a 3px route ring; a linked station wears the double ring; hover names the station.",
+      "html": "<nav class=\"ds-station-line\" aria-label=\"Diagrams in this project\"><div class=\"ds-track\"><button class=\"ds-station\" aria-current=\"page\" style=\"--size:12px\"><span class=\"ds-dot\"></span><span class=\"ds-tip\">Overview \u00b7 14</span></button><span class=\"ds-seg\"></span><button class=\"ds-station\" data-interchange=\"true\" style=\"--size:10px\"><span class=\"ds-dot\"></span><span class=\"ds-tip\">Burner assembly \u00b7 5</span></button><span class=\"ds-seg\"></span><button class=\"ds-station\" style=\"--size:8px\"><span class=\"ds-dot\"></span><span class=\"ds-tip\">Control loop \u00b7 0</span></button></div><button class=\"ds-station-add\" aria-label=\"New diagram in this project\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 3v10M3 8h10\"/></svg></button></nav>",
+      "css": ".ds-station-line{display:inline-flex;align-items:center;padding:4px 8px 20px;font:13px/1.45 \"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", sans-serif}.ds-track{display:flex;align-items:center;position:relative}.ds-seg{width:28px;height:4px;background:var(--route-line,color-mix(in srgb,var(--route,#2457d6) 85%,var(--ink,#15181c)));flex:0 0 auto}.ds-station{position:relative;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;border:0;background:transparent;flex:0 0 auto;cursor:pointer}.ds-station:focus-visible{outline:2px solid var(--route,#2457d6);outline-offset:2px;border-radius:3px}.ds-dot{display:block;border-radius:50%;background:var(--station-fill,#fff);border:2px solid var(--station-ring,#15181c);width:var(--size,10px);height:var(--size,10px);transition:transform 140ms cubic-bezier(0.16, 1, 0.3, 1),border-color 140ms}.ds-station:hover .ds-dot{transform:scale(1.25);border-color:var(--route,#2457d6)}.ds-station[aria-current=\"page\"] .ds-dot{border:3px solid var(--route,#2457d6);width:calc(var(--size,10px) + 4px);height:calc(var(--size,10px) + 4px)}.ds-station[data-interchange=\"true\"] .ds-dot{box-shadow:0 0 0 2px var(--station-fill,#fff),0 0 0 3.5px var(--station-ring,#15181c)}.ds-tip{position:absolute;top:100%;left:50%;transform:translate(-50%,2px);padding:3px 8px;border-radius:4px;background:var(--ink,#15181c);color:var(--bg,#fff);font-size:11px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 140ms,transform 140ms cubic-bezier(0.16, 1, 0.3, 1);z-index:10}.ds-station:hover .ds-tip,.ds-station:focus-visible .ds-tip{opacity:1;transform:translate(-50%,6px)}.ds-station-add{margin-left:4px;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;padding:0;border:1px solid transparent;border-radius:var(--radius,6px);background:transparent;color:var(--ink,#15181c);cursor:pointer;transition:background 140ms cubic-bezier(0.16, 1, 0.3, 1)}.ds-station-add svg{width:16px;height:16px}.ds-station-add:hover{background:var(--route-soft,color-mix(in srgb,var(--route,#2457d6) 12%,var(--bg,#fff)))}.ds-station-add:focus-visible{outline:2px solid var(--route,#2457d6);outline-offset:2px}"
+    },
+    {
+      "name": "Stop (version row)",
+      "kind": "custom",
+      "refersTo": "stop",
+      "description": "A saved version as a stop on the rail: the number is the headline, the label and pill sit beside it, meta below; confirm/restore/delete appear on hover; a newly arrived stop holds the gold tint until read.",
+      "html": "<ol class=\"ds-stops\" aria-label=\"Saved versions, newest first\"><li class=\"ds-stop\" data-confirmed=\"false\" data-new=\"true\"><div class=\"ds-rail\"><span class=\"ds-stop-station\"></span></div><div><div class=\"ds-v\">v3 <span class=\"ds-label\">relief valve</span><span class=\"ds-pill ds-pill-warn\">unconfirmed</span></div><div class=\"ds-meta\"><span>claude</span><time>just now</time><span>14 el</span></div><div class=\"ds-stop-note\">Added the T&amp;P valve near the top of the tank.</div></div><div class=\"ds-actions\"><button class=\"ds-act\" aria-label=\"Confirm v3\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8.5l3 3 7-7\"/></svg></button><button class=\"ds-act\" aria-label=\"Restore v3\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3.5 8a4.5 4.5 0 1 0 1.3-3.2\"/><path d=\"M3 2.5v3h3\"/></svg></button><button class=\"ds-act ds-act-danger\" aria-label=\"Delete v3\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 4.5h10M6.5 4.5v-2h3v2M4.5 4.5l.6 9h5.8l.6-9\"/></svg></button></div></li><li class=\"ds-stop\" data-confirmed=\"true\"><div class=\"ds-rail\"><span class=\"ds-stop-station\"></span></div><div><div class=\"ds-v\">v2 <span class=\"ds-label\">added thermostat loop</span><span class=\"ds-pill ds-pill-ok\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8.5l3 3 7-7\"/></svg> confirmed</span></div><div class=\"ds-meta\"><span>human</span><time>2 min ago</time><span>13 el</span></div></div><div class=\"ds-actions\"><button class=\"ds-act\" aria-pressed=\"true\" aria-label=\"Unconfirm v2\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 8.5l3 3 7-7\"/></svg></button><button class=\"ds-act\" aria-label=\"Restore v2\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3.5 8a4.5 4.5 0 1 0 1.3-3.2\"/><path d=\"M3 2.5v3h3\"/></svg></button><button class=\"ds-act ds-act-danger\" aria-label=\"Delete v2\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 4.5h10M6.5 4.5v-2h3v2M4.5 4.5l.6 9h5.8l.6-9\"/></svg></button></div></li></ol>",
+      "css": ".ds-stops{margin:0;padding:0;list-style:none;width:360px;background:var(--bg-rail,#f3f4f6);font:13px/1.45 \"Helvetica Neue\", Helvetica, Arial, \"Liberation Sans\", sans-serif;color:var(--ink,#15181c);font-variant-numeric:tabular-nums}.ds-stop{display:grid;grid-template-columns:28px 1fr auto;gap:0 10px;align-items:start;padding:10px 16px;border-bottom:1px solid var(--rule,#dcdfe4);position:relative;transition:background 220ms}.ds-stop:hover{background:color-mix(in srgb,var(--bg,#fff) 50%,var(--bg-rail,#f3f4f6))}.ds-stop[data-new=\"true\"]{background:var(--new-soft,color-mix(in srgb,var(--new,#c98a00) 16%,var(--bg,#fff)))}.ds-rail{position:relative;width:28px;height:100%;min-height:40px}.ds-rail::before{content:\"\";position:absolute;left:13px;top:-10px;bottom:-10px;width:3px;background:var(--route-line,color-mix(in srgb,var(--route,#2457d6) 85%,var(--ink,#15181c)));opacity:.9}.ds-stop:first-child .ds-rail::before{top:14px}.ds-stop:last-child .ds-rail::before{bottom:auto;height:24px}.ds-stop-station{position:absolute;left:8px;top:8px;width:13px;height:13px;border-radius:50%;background:var(--station-fill,#fff);border:2.5px solid var(--station-ring,#15181c);z-index:1}.ds-stop[data-confirmed=\"true\"] .ds-stop-station{border-color:var(--ok,#1b7f3b)}.ds-v{font-weight:700;font-size:15px;line-height:1.2;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ds-label{font-weight:500;font-size:13px;color:var(--ink-2,#4a5059);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ds-meta{font-size:12px;color:var(--ink-3,#686e77);margin-top:2px;display:flex;gap:8px;flex-wrap:wrap}.ds-stop-note{font-size:12px;color:var(--ink-2,#4a5059);margin-top:4px;line-height:1.45}.ds-pill{display:inline-flex;align-items:center;gap:4px;height:18px;padding:0 7px;border-radius:9px;font-size:11px;font-weight:600;letter-spacing:.01em}.ds-pill svg{width:11px;height:11px}.ds-pill-ok{background:var(--ok-soft,color-mix(in srgb,var(--ok,#1b7f3b) 14%,var(--bg,#fff)));color:var(--ok-text,#187035)}.ds-pill-warn{background:var(--warn-soft,color-mix(in srgb,var(--warn,#b15c00) 14%,var(--bg,#fff)));color:var(--warn-text,#964e00)}.ds-actions{display:flex;gap:4px;opacity:0;transition:opacity 140ms}.ds-stop:hover .ds-actions,.ds-stop:focus-within .ds-actions{opacity:1}.ds-act{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;padding:0;border:1px solid transparent;border-radius:var(--radius,6px);background:transparent;color:var(--ink,#15181c);cursor:pointer;transition:background 140ms cubic-bezier(0.16, 1, 0.3, 1),border-color 140ms cubic-bezier(0.16, 1, 0.3, 1)}.ds-act svg{width:16px;height:16px}.ds-act:hover{background:var(--route-soft,color-mix(in srgb,var(--route,#2457d6) 12%,var(--bg,#fff)))}.ds-act:focus-visible{outline:2px solid var(--route,#2457d6);outline-offset:2px}.ds-act[aria-pressed=\"true\"]{background:var(--route-soft,color-mix(in srgb,var(--route,#2457d6) 12%,var(--bg,#fff)));border-color:color-mix(in srgb,var(--route,#2457d6) 40%,transparent)}.ds-act-danger{color:var(--err-text,#b42318)}.ds-act-danger:hover{background:var(--err-soft,color-mix(in srgb,var(--err,#b42318) 12%,var(--bg,#fff)));border-color:var(--err,#b42318)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Transit Map Legend",
+    "overview": "The workbench is a transit system drawn with the fewest marks a map legend needs: a line, a dot, a ring, a dash. A project is a route in one saturated colour; each diagram is a station on it; a link is an interchange (a double ring on the line, a dashed arc on the map); a saved version is a stop behind you on the rail. The shell around the Excalidraw canvas is an ordinary editor shell (a 48px top bar, a docked 360px panel) and the world shows only through type, route colour, legend density and the station-line move. The hand-drawn canvas carries the personality; the chrome carries the wayfinding.\n\nDensity is timetable density: 13px UI type, 12px legend and meta, 11px pills, all in the Helvetica Neue / Helvetica / Arial system stack with tabular figures wherever a number appears. Surfaces are flat. Hairline (1px) rules divide the panel into sections; nothing is boxed; the one soft offset shadow belongs to things that float (the scene banner, the toast, the small-screen panel overlay). Day service is white; night service is near-black (#111316); both are tinted cool-neutral and the Excalidraw theme toggle drives them.\n\nRejections confirmed by the build: no cards on the panel, no second accent, no icon font or web font, no emoji glyphs, no modal for routine actions (confirm, restore and delete happen inline in the row), and no fades for content motion (motion travels along the line or reranks in place).",
+    "keyCharacteristics": [
+      "One route colour per project is the only accent; state hues (green confirmed, amber unconfirmed, red error, gold newly arrived) mark state and nothing else.",
+      "Transit grotesk system stack on a 13 / 12 / 11px UI ramp, `font-variant-numeric: tabular-nums` set on `body`.",
+      "Hairline-ruled sections, flat resting surfaces, one float shadow.",
+      "A diagram is always a station: white dot, 2px Signal Black ring; 3px route ring when on canvas; double ring when linked; dot size on a fixed ramp by element count.",
+      "Motion travels along lines: the train rides the track on autosave, the active station arrives once, rows rerank in place through view transitions.",
+      "An authored 16px / 1.5px-stroke inline SVG icon set, one weight, no icon font."
+    ],
+    "rules": [
+      {
+        "name": "The One Route Rule",
+        "body": "Every accent on a screen reads from `--route` or one of its derivations; there is no second accent, and the route changes only when the project does.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fit-to-4.5 Rule",
+        "body": "A route colour never touches text or a button face raw: `routeTokens()` derives `--route-btn`, `--route-ink` and `--route-text` per theme until each pair clears 4.5:1.",
+        "section": "colors"
+      },
+      {
+        "name": "The State-Is-Not-Decoration Rule",
+        "body": "Green, amber, red and gold appear only on the thing whose state they report (a pill, a dot, a ring, a row tint); they never colour headings, layout or ordinary buttons.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "`body` sets `font-variant-numeric: tabular-nums`; every number (readout time, element counts, version numbers, stats) sits on tabular figures so rows rerank without jitter.",
+        "section": "typography"
+      },
+      {
+        "name": "The Headline Number Rule",
+        "body": "In a version row the number (\"v7\") is the headline at 15px / 700; its label sits beside it at 13px / 500 in Platform Grey, and nothing is labelled twice.",
+        "section": "typography"
+      },
+      {
+        "name": "The Hairline Section Rule",
+        "body": "Panel and page content is divided, not boxed: sections and rows end in a 1px `--rule` border and share the 16px gutter.",
+        "section": "layout"
+      },
+      {
+        "name": "The Float-Only Shadow Rule",
+        "body": "`--shadow-float` goes on things that float (scene banner, toast, the small-screen panel overlay) and on nothing that rests.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Ring-Not-Shadow Rule",
+        "body": "A `box-shadow` on a station or an input is a ring that reports state; it is never softened or offset into depth.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Station Mark Rule",
+        "body": "A diagram is always a white dot (`station-fill`) with a 2px Signal Black ring, sized 8 / 10 / 12 / 14px for 0 / \u22645 / \u226430 / >30 elements (`stationSize`); confirmed is a green ring, on canvas is a 3px route ring 4px larger, linked is a double ring. The map key draws the same marks it explains.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Along-the-Line Rule",
+        "body": "Motion travels along a line or reranks in place: the train rides the track, the station arrives, the ring expands, rows move to their new rank. Nothing fades in from nowhere except the toast, and nothing bounces.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "**Do** read every accent from `--route` and its derivations (`--route-btn`, `--route-ink`, `--route-text`, `--route-soft`, `--route-line`), set through `applyRoute(project.color, theme)`; a per-row route comes from `routeStyle()`.",
+      "**Do** divide panel and page content with 1px `--rule` hairlines (`.panel-section`, row borders) and keep resting surfaces flat on the ground / Rail Grey / Sunk Grey tone steps.",
+      "**Do** keep one control height: 30px for buttons, the readout and the route chip; 26px for `.btn-sm`; 32px minimum for inputs; 40px for tabs.",
+      "**Do** draw a diagram as a station: white dot, 2px Signal Black ring, sized 8 / 10 / 12 / 14px by element count, green when confirmed, 3px route ring when on canvas, double ring when linked.",
+      "**Do** use the authored 16px / 1.5px-stroke `Icon` set and add new glyphs to `icons.tsx` on the same grid and weight.",
+      "**Do** keep numbers in tabular figures and make the version number the row headline at 15px / 700.",
+      "**Do** hold the `--new-soft` tint on a newly arrived note or version until it is hovered or focused.",
+      "**Do** give focus a 2px route outline offset 2px, and inputs a route border with a 3px ring at 22% route.",
+      "**Do** confirm destructive or replacing actions inline in the row (small danger or primary button plus a ghost \"Cancel\") and report results in the toast.",
+      "**Do** move along the line: reuse `withViewTransition()` for reranking rows and the `--t-fast` / `--t-base` / `--t-slow` steps with `--ease-out`; honour `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "**Don't** add a second accent colour; green, amber, red and gold report state and appear only on the pill, dot, ring or row tint that carries it.",
+      "**Don't** box panel or page content in bordered, rounded cards; the 10px radius belongs to floating surfaces (scene banner, toast).",
+      "**Don't** put `--shadow-float` on anything at rest; it is for the scene banner, the toast and the small-screen panel overlay only.",
+      "**Don't** load a web font or an icon font, and don't use emoji or glyph characters as icons; the chrome is the Helvetica Neue / Helvetica / Arial stack with inline SVG.",
+      "**Don't** put a raw project colour on text or a button face; derive it through `routeTokens()` so every pair clears 4.5:1.",
+      "**Don't** cover or restyle Excalidraw's own chrome (toolbar, menus, shortcuts, theme); the shell wraps the canvas and only the scene banner floats over it.",
+      "**Don't** add a modal for routine actions (save, confirm, restore, delete, rename, link); they happen inline where the thing is.",
+      "**Don't** label twice: no eyebrow or kicker above a headline, no \"Version\" word beside \"v7\", no repeated section title inside a row.",
+      "**Don't** use `--fs-18` or `--fs-32` without a new reason; no shipped surface needs a size above 24px or between 15 and 24.",
+      "**Don't** animate content with fades, bounces or slides that do not follow a line or a rerank; the toast is the one allowed slide-in."
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "p_mvtxnhuigk8uc7",
+  "name": "Scratchpad",
+  "slug": "scratchpad",
+  "description": "A place to think out loud. Create a project when a domain takes shape.",
+  "tags": [
+    "scratch"
+  ],
+  "color": "#f59e0b",
+  "createdAt": "2026-10-29T19:25:05.178Z",
+  "updatedAt": "2026-10-29T21:02:41.355Z",
+  "rootPath": null
+}

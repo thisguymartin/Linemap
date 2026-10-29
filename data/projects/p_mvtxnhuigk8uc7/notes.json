@@ -1,0 +1,22 @@
+[
+  {
+    "id": "n_mvu14ztmmjfcws",
+    "projectId": "p_mvtxnhuigk8uc7",
+    "diagramId": "d_mvtxnhulngcpph",
+    "author": "claude-opus-5-5",
+    "role": "agent",
+    "body": "Generic, vendor-neutral view. Redis/Postgres are placeholder examples. Open question: should this get drill-downs (e.g. auth/session flow inside App Server, or SSR vs SPA rendering in Browser)?",
+    "elementIds": [
+      "app",
+      "browser",
+      "cache",
+      "db"
+    ],
+    "tags": [
+      "open-question"
+    ],
+    "resolved": false,
+    "createdAt": "2026-10-29T21:02:40.474Z",
+    "updatedAt": "2026-10-29T21:02:40.474Z"
+  }
+]

@@ -4,7 +4,7 @@ import net from 'net';
 import logger from './utils/logger.js';
 import { isMainModule } from './core/entry.js';
 import { writePidFile, removePidFile } from './core/pidfile.js';
-import { DATA_DIR } from './core/config.js';
+import { DATA_DIR, LEGACY_DATA_DIR } from './core/config.js';
 import { WorkspaceStore } from './domain/store.js';
 import { Workspace } from './domain/workspace.js';
 import { createApp, attachWebSocket } from './server/app.js';
@@ -12,7 +12,7 @@ import { entryPath } from './core/paths.js';
 import { AgentManager } from './agent/manager.js';
 
 // Canvas server entry point: HTTP API + WebSocket sync + static frontend,
-// backed by the file workspace. Importing this module never starts it; the
+// backed by the local SQLite workspace. Importing this module never starts it; the
 // CLI and MCP server spawn `dist/server.js` as a child process instead.
 
 const PORT = parseInt(process.env.PORT || '3000', 10);
@@ -61,7 +61,7 @@ export async function startServer(): Promise<void> {
     }
   }
 
-  const workspace = new Workspace(new WorkspaceStore(DATA_DIR));
+  const workspace = new Workspace(new WorkspaceStore(DATA_DIR, LEGACY_DATA_DIR));
   workspace.start();
 
   // Agents (local claude / codex CLIs) and folder access only on loopback.
@@ -111,6 +111,7 @@ export async function startServer(): Promise<void> {
   process.on('SIGINT', () => shutdown('SIGINT'));
   process.on('exit', () => {
     workspace.flush();
+    workspace.store.close();
     if (ownsPidFile) removePidFile(PORT);
   });
 }

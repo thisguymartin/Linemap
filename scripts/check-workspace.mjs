@@ -14,6 +14,9 @@ const repoRoot = join(__dirname, '..');
 const serverPath = join(repoRoot, 'dist', 'server.js');
 const port = Number(process.env.PORT || 36000 + Math.floor(Math.random() * 1000));
 const baseUrl = `http://127.0.0.1:${port}`;
+process.env.EXPRESS_SERVER_URL = baseUrl;
+process.env.EXCALIDRAW_NO_AUTOSTART = '1';
+const { LocalDatabase } = await import('../dist/testing.js');
 const dataDir = fs.mkdtempSync(join(os.tmpdir(), 'excalidraw-workspace-'));
 
 function assert(condition, message) {
@@ -127,8 +130,11 @@ try {
     await sleep(900);
     const { diagram } = await ok('GET', `/api/diagrams/${state.overview}`);
     assert(diagram.elementCount === 3, `autosave stored ${diagram.elementCount} elements`);
-    const file = join(dataDir, 'projects', state.project, 'diagrams', state.overview, 'diagram.json');
-    assert(fs.existsSync(file), 'diagram.json not written');
+    const db = new LocalDatabase(dataDir);
+    try {
+      const [saved] = db.records('diagrams', 'WHERE id = ?', state.overview);
+      assert(saved.scene.elements.length === 3, 'scene not persisted in SQLite');
+    } finally { db.close(); }
   });
 
   await check('save, confirm, restore and delete versions', async () => {
@@ -342,7 +348,11 @@ try {
     assert(gone.status === 404, 'versions of a deleted diagram should be gone');
     const afterProject = await ok('DELETE', `/api/projects/${state.project}`);
     assert(afterProject.activeDiagramId === state.scratchDiagram, 'should fall back to the scratch diagram');
-    assert(!fs.existsSync(join(dataDir, 'projects', state.project)), 'project directory should be removed');
+    const db = new LocalDatabase(dataDir);
+    try {
+      assert(!db.get('SELECT id FROM projects WHERE id = ?', state.project), 'project still in SQLite');
+      assert(!db.get('SELECT id FROM diagrams WHERE project_id = ?', state.project), 'owned diagrams still in SQLite');
+    } finally { db.close(); }
     const everything = await ok('DELETE', `/api/projects/${state.scratchProject}`);
     assert(everything.activeDiagramId, 'deleting the last project must recreate a default');
     const ws = await ok('GET', '/api/workspace');

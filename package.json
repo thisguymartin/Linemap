@@ -20,14 +20,15 @@
     "mcp": "bun dist/bin.js",
     "cli": "bun dist/bin.js",
     "canvas": "bun dist/server.js",
-    "test": "bun run test:mcp && bun run test:bind && bun run test:render && bun run test:state && bun run test:workspace && bun run test:agent",
+    "test": "bun run test:storage && bun run test:mcp && bun run test:bind && bun run test:render && bun run test:state && bun run test:workspace && bun run test:agent",
+    "test:storage": "bun scripts/check-storage.mjs",
     "test:mcp": "bun scripts/check-mcp-stdio.mjs",
     "test:bind": "bun scripts/check-local-bind.mjs",
     "test:render": "bun scripts/check-render.mjs",
     "test:state": "bun scripts/check-state-integrity.mjs",
     "test:workspace": "bun scripts/check-workspace.mjs",
     "test:agent": "bun scripts/check-agent.mjs",
-    "test:node": "MCP_RUNTIME=node CANVAS_RUNTIME=node node scripts/check-mcp-stdio.mjs && node scripts/check-workspace.mjs && node scripts/check-agent.mjs",
+    "test:node": "node scripts/check-storage.mjs && MCP_RUNTIME=node CANVAS_RUNTIME=node node scripts/check-mcp-stdio.mjs && node scripts/check-workspace.mjs && node scripts/check-agent.mjs",
     "test:canvas": "bunx playwright test",
     "capture:review": "node scripts/capture-review.mjs",
     "build:fonts": "node scripts/build-fonts.mjs",
@@ -66,7 +67,7 @@
   },
   "engines": {
     "bun": ">=1.3.0",
-    "node": ">=20.19.0"
+    "node": ">=22.13.0"
   },
   "license": "MIT",
   "private": true,

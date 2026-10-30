@@ -7,16 +7,16 @@ import logger from '../utils/logger.js';
  * Platform-compatible state directory for runtime artifacts (pidfile),
  * mirroring the log-path convention in utils/logger.ts.
  */
-function stateDir(): string {
+function stateDir(legacy = false): string {
   if (process.platform === 'darwin') {
-    return path.join(homedir(), 'Library', 'Application Support', 'excalidraw-canvas');
+    return path.join(homedir(), 'Library', 'Application Support', legacy ? 'excalidraw-canvas' : 'linemap');
   }
   if (process.platform === 'win32') {
     const base = process.env.LOCALAPPDATA || path.join(homedir(), 'AppData', 'Local');
-    return path.join(base, 'Excalidraw-Canvas');
+    return path.join(base, legacy ? 'Excalidraw-Canvas' : 'Linemap');
   }
   const xdgState = process.env.XDG_STATE_HOME || path.join(homedir(), '.local', 'state');
-  return path.join(xdgState, 'excalidraw-canvas');
+  return path.join(xdgState, legacy ? 'excalidraw-canvas' : 'linemap');
 }
 
 export function pidFilePath(port: number): string {
@@ -36,13 +36,14 @@ export function writePidFile(port: number, pid: number): void {
 }
 
 export function readPidFile(port: number): number | null {
-  try {
-    const raw = fs.readFileSync(pidFilePath(port), 'utf-8').trim();
-    const pid = parseInt(raw, 10);
-    return Number.isInteger(pid) && pid > 0 ? pid : null;
-  } catch {
-    return null;
+  for (const file of [pidFilePath(port), path.join(stateDir(true), `server-${port}.pid`)]) {
+    try {
+      const raw = fs.readFileSync(file, 'utf-8').trim();
+      const pid = Number(raw);
+      if (Number.isInteger(pid) && pid > 0) return pid;
+    } catch { /* try the legacy location */ }
   }
+  return null;
 }
 
 export function removePidFile(port: number): void {

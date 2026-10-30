@@ -164,7 +164,7 @@ try {
     box('tab', 760, 40, 280, 90, 'Browser tab\nExcalidraw + side panel', C.blue),
     box('mcp', 40, 220, 280, 80, 'MCP stdio server\nlinemap (no arguments)', C.purple),
     box('canvas', 300, 400, 480, 110, 'Canvas server  (dist/server.js)\nREST + WebSocket, one live diagram', C.teal, { fontSize: 20 }),
-    box('data', 40, 620, 300, 100, 'data/  (JSON on disk)\nprojects, diagrams, versions,\nnotes, links, chats', C.yellow),
+    box('data', 40, 620, 300, 100, '.local/linemap.db  (SQLite)\nprojects, diagrams, versions,\nnotes, links, chats', C.yellow),
     box('render', 420, 620, 260, 100, 'Headless renderer\njsdom + resvg → PNG/SVG', C.gray),
     box('agents', 760, 620, 300, 110, 'Chat runs\nclaude -p  /  codex exec\none per message, each with\nits own MCP server', C.orange),
     box('repo', 760, 820, 300, 70, 'Your repo (read-only)', C.green),

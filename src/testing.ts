@@ -5,3 +5,6 @@ export { expandElementsForExport } from './core/expand-elements.js';
 export { prepareScene, renderSvgWithExcalidraw } from './core/render/excalidraw-node/index.js';
 export { importScene } from './core/scene-io.js';
 export { callExcalidrawTool } from './core/mcp-dispatch.js';
+export { LocalDatabase } from './domain/database.js';
+export { WorkspaceStore } from './domain/store.js';
+export { ChatStore } from './agent/chat-store.js';

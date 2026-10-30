@@ -52,6 +52,7 @@ export function createApp(workspace: Workspace, options: AppOptions): Express {
       activeDiagramId: active?.id ?? null,
       activeProjectId: active?.projectId ?? null,
       dataDir: workspace.store.dataDir,
+      databasePath: workspace.store.db.filename,
       logFile: RESOLVED_LOG_FILE_PATH
     });
   });

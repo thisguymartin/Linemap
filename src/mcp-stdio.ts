@@ -16,7 +16,7 @@ import { ensureCanvasReadyForMcpTool } from './core/canvas-state.js';
 // Start server
 export async function runServer(): Promise<StdioServerHandle> {
   try {
-    logger.info('Starting Excalidraw MCP server...');
+    logger.info('Starting Linemap MCP server...');
 
     // `serveStdio` owns the era decision for the connection: an `initialize`
     // request pins a 2025-era instance, while a `server/discover` probe — or
@@ -28,7 +28,7 @@ export async function runServer(): Promise<StdioServerHandle> {
       }
     });
 
-    logger.info('Excalidraw MCP server running on stdio');
+    logger.info('Linemap MCP server running on stdio');
 
     // Kick off auto-start after the stdio transport is connected so the MCP
     // handshake stays fast. Canvas-backed tools await the same promise before

@@ -9,7 +9,7 @@
     "request-flow"
   ],
   "createdAt": "2026-10-29T19:25:05.181Z",
-  "updatedAt": "2026-10-29T22:34:19.360Z",
+  "updatedAt": "2026-10-29T23:50:47.165Z",
   "elementCount": 50,
   "versionCount": 1,
   "latestVersion": 1,
@@ -52,9 +52,9 @@
         "originalText": "How a Web App Works",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "subtitle",
@@ -92,9 +92,9 @@
         "originalText": "one request, end to end",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "z_client",
@@ -123,9 +123,9 @@
         "updated": 1793310769882,
         "link": null,
         "locked": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "z_edge",
@@ -154,9 +154,9 @@
         "updated": 1793310769882,
         "link": null,
         "locked": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "z_backend",
@@ -185,9 +185,9 @@
         "updated": 1793310769882,
         "link": null,
         "locked": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "z_data",
@@ -216,9 +216,9 @@
         "updated": 1793310769882,
         "link": null,
         "locked": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "zl_client",
@@ -256,9 +256,9 @@
         "originalText": "Client",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "zl_edge",
@@ -296,9 +296,9 @@
         "originalText": "Edge / Internet",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "zl_backend",
@@ -336,9 +336,9 @@
         "originalText": "Backend",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "zl_data",
@@ -376,9 +376,9 @@
         "originalText": "Data",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "user",
@@ -421,9 +421,9 @@
             "client"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "user-label",
@@ -461,9 +461,9 @@
         "originalText": "User",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "browser",
@@ -514,9 +514,9 @@
             "client"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "browser-label",
@@ -554,9 +554,9 @@
         "originalText": "Browser\nHTML · CSS · JS",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "dns",
@@ -599,9 +599,9 @@
             "edge"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "dns-label",
@@ -639,9 +639,9 @@
         "originalText": "DNS\ndomain -> IP",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "cdn",
@@ -688,9 +688,9 @@
             "edge"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "cdn-label",
@@ -728,9 +728,9 @@
         "originalText": "CDN\nstatic + TLS",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "lb",
@@ -778,9 +778,9 @@
             "sync-path"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "lb-label",
@@ -818,9 +818,9 @@
         "originalText": "Load Balancer",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "app",
@@ -876,9 +876,9 @@
             "sync-path"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "app-label",
@@ -916,9 +916,9 @@
         "originalText": "App Server\nAPI + logic",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "worker",
@@ -961,9 +961,9 @@
             "async"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "worker-label",
@@ -1001,9 +1001,9 @@
         "originalText": "Worker\nemails, jobs",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "cache",
@@ -1046,9 +1046,9 @@
             "data-store"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "cache-label",
@@ -1086,9 +1086,9 @@
         "originalText": "Cache\nRedis",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "db",
@@ -1131,9 +1131,9 @@
             "data-store"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "db-label",
@@ -1171,9 +1171,9 @@
         "originalText": "Database\nPostgres",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "queue",
@@ -1220,9 +1220,9 @@
             "async"
           ]
         },
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "queue-label",
@@ -1260,9 +1260,9 @@
         "originalText": "Queue\nasync jobs",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a1",
@@ -1320,9 +1320,9 @@
         "startArrowhead": null,
         "endArrowhead": "arrow",
         "elbowed": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a1-label",
@@ -1360,9 +1360,9 @@
         "originalText": "1 open URL",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a2",
@@ -1420,9 +1420,9 @@
         "startArrowhead": null,
         "endArrowhead": "arrow",
         "elbowed": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a2-label",
@@ -1460,9 +1460,9 @@
         "originalText": "2 resolve",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a3",
@@ -1520,9 +1520,9 @@
         "startArrowhead": "arrow",
         "endArrowhead": "arrow",
         "elbowed": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a3-label",
@@ -1560,9 +1560,9 @@
         "originalText": "3 HTTPS",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a4",
@@ -1620,9 +1620,9 @@
         "startArrowhead": "arrow",
         "endArrowhead": "arrow",
         "elbowed": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a4-label",
@@ -1660,9 +1660,9 @@
         "originalText": "4 API call",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a5",
@@ -1720,9 +1720,9 @@
         "startArrowhead": "arrow",
         "endArrowhead": "arrow",
         "elbowed": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a5-label",
@@ -1760,9 +1760,9 @@
         "originalText": "5 route",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a6",
@@ -1820,9 +1820,9 @@
         "startArrowhead": "arrow",
         "endArrowhead": "arrow",
         "elbowed": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a6-label",
@@ -1860,9 +1860,9 @@
         "originalText": "6 cache hit?",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a7",
@@ -1920,9 +1920,9 @@
         "startArrowhead": "arrow",
         "endArrowhead": "arrow",
         "elbowed": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a7-label",
@@ -1960,9 +1960,9 @@
         "originalText": "7 query",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a8",
@@ -2020,9 +2020,9 @@
         "startArrowhead": null,
         "endArrowhead": "arrow",
         "elbowed": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a8-label",
@@ -2060,9 +2060,9 @@
         "originalText": "8 enqueue",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a9",
@@ -2120,9 +2120,9 @@
         "startArrowhead": null,
         "endArrowhead": "arrow",
         "elbowed": false,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "a9-label",
@@ -2160,9 +2160,9 @@
         "originalText": "9 consume",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "legend_title",
@@ -2200,9 +2200,9 @@
         "originalText": "Request lifecycle",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       },
       {
         "id": "legend",
@@ -2240,9 +2240,9 @@
         "originalText": "1  User types a URL or clicks a link\n2  DNS turns the domain into an IP address\n3  Browser opens HTTPS to the CDN; static files (JS, CSS, images) come straight back from the edge\n4  Dynamic API calls pass through to the load balancer\n5  Load balancer picks a healthy app server\n6  App checks the cache first (fast path)\n7  On a miss it queries the database, then fills the cache\n8  Slow work (emails, image resize) goes onto a queue so the user isn't kept waiting\n9  A background worker picks it up async\n\nSolid = sync request/response (response retraces the path back to the browser, which renders it)\nDashed = async, fire-and-forget",
         "autoResize": true,
         "lineHeight": 1.25,
-        "syncedAt": "2026-10-29T22:34:18.959Z",
+        "syncedAt": "2026-10-29T23:50:46.906Z",
         "source": "frontend_sync",
-        "syncTimestamp": "2026-10-29T22:34:18.955Z"
+        "syncTimestamp": "2026-10-29T23:50:46.898Z"
       }
     ],
     "files": {}

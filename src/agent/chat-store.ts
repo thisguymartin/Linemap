@@ -1,122 +1,119 @@
-import fs from 'fs';
-import path from 'path';
-import { randomUUID } from 'crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+import { randomUUID } from 'node:crypto';
 import { NotFoundError } from '../domain/errors.js';
-import type { ChatFile, ChatMessage, ChatThread, ChatThreadSummary } from './types.js';
+import { LocalDatabase } from '../domain/database.js';
+import { normalizeMessage } from '../domain/import-json.js';
+import type { ChatMessage, ChatThread, ChatThreadSummary } from './types.js';
 
 function nowIso(): string {
   return new Date().toISOString();
 }
 
-// Chats per project, stored beside the project's other JSON as chat.json.
+type ThreadMeta = Omit<ChatThread, 'messages'>;
+
 export class ChatStore {
-  private cache = new Map<string, ChatFile>();
+  // Streaming callbacks hold mutable references until their run finishes.
+  private running = new Map<string, ChatThread>();
 
-  constructor(private readonly projectDir: (projectId: string) => string) {}
-
-  private file(projectId: string): string {
-    return path.join(this.projectDir(projectId), 'chat.json');
+  constructor(
+    private readonly db: LocalDatabase,
+    private readonly projectDir: (projectId: string) => string,
+    private readonly legacyProjectDir = projectDir
+  ) {
+    this.db.transaction(() => {
+      for (const meta of this.db.records<ThreadMeta>('chat_threads')) {
+        const messages = this.db.threadMessages(meta.id).map(normalizeMessage);
+        let interrupted = false;
+        for (const message of messages) {
+          if (message.status !== 'running') continue;
+          message.status = 'error';
+          message.error ??= 'Interrupted: the canvas server stopped during this run.';
+          message.activity = null;
+          interrupted = true;
+        }
+        if (interrupted) this.db.putThread({ ...meta, messages });
+      }
+    });
   }
 
   runLogPath(projectId: string, messageId: string): string {
-    return path.join(this.projectDir(projectId), 'runs', `${messageId}.log`);
+    const local = path.join(this.projectDir(projectId), 'runs', `${messageId}.log`);
+    const legacy = path.join(this.legacyProjectDir(projectId), 'runs', `${messageId}.log`);
+    return fs.existsSync(local) || !fs.existsSync(legacy) ? local : legacy;
   }
 
-  private load(projectId: string): ChatFile {
-    const cached = this.cache.get(projectId);
-    if (cached) return cached;
-    let file: ChatFile = { threads: [] };
-    try {
-      const raw = JSON.parse(fs.readFileSync(this.file(projectId), 'utf-8')) as Partial<ChatFile> & { messages?: ChatMessage[]; sessions?: ChatThread['sessions'] };
-      if (Array.isArray(raw.threads)) file = { threads: raw.threads };
-      else if (Array.isArray(raw.messages) && raw.messages.length) {
-        // v1 file: one conversation per project. Becomes the first thread.
-        const id = randomUUID();
-        file = { threads: [{
-          id, projectId, title: titleFrom(raw.messages), createdAt: raw.messages[0]!.createdAt, updatedAt: raw.messages.at(-1)!.createdAt,
-          sessions: raw.sessions ?? {}, messages: raw.messages.map(m => ({ ...m, threadId: id }))
-        }] };
+  save(projectId: string, thread: ChatThread): void {
+    const saved = this.db.transaction(() => {
+      if (!this.db.get('SELECT id FROM projects WHERE id = ?', projectId)) {
+        this.running.delete(thread.id);
+        return false;
       }
-    } catch { /* no chats yet */ }
-    for (const thread of file.threads) {
+      if (thread.projectId !== projectId) throw new Error('Chat belongs to another project');
       for (const message of thread.messages) {
-        message.thinking ??= '';
-        message.liveText ??= '';
-        message.activity ??= null;
-        message.effort ??= null;
-        // A server that stopped mid-run leaves "running" messages behind.
-        if (message.status === 'running') {
-          message.status = 'error';
-          message.error = message.error ?? 'Interrupted: the canvas server stopped during this run.';
-          message.activity = null;
-        }
+        if (message.diagramId && !this.db.get('SELECT id FROM diagrams WHERE id = ?', message.diagramId)) message.diagramId = null;
       }
-    }
-    this.cache.set(projectId, file);
-    return file;
-  }
-
-  save(projectId: string): void {
-    const file = this.cache.get(projectId);
-    if (!file) return;
-    const dir = this.projectDir(projectId);
-    if (!fs.existsSync(dir)) {
-      this.cache.delete(projectId);
-      return;
-    }
-    const target = this.file(projectId);
-    const tmp = `${target}.${process.pid}.${Date.now()}.tmp`;
-    // Live-only fields are not worth persisting mid-run.
-    fs.writeFileSync(tmp, JSON.stringify(file, (key, value) => (key === 'liveText' ? '' : value), 2), 'utf-8');
-    fs.renameSync(tmp, target);
+      this.db.putThread(thread);
+      return true;
+    });
+    if (!saved) return;
+    if (thread.messages.some(message => message.status === 'running')) this.running.set(thread.id, thread);
+    else this.running.delete(thread.id);
   }
 
   list(projectId: string, runningThreadId: string | null): ChatThreadSummary[] {
-    return this.load(projectId).threads
-      .map(t => ({
-        id: t.id,
-        title: t.title,
-        createdAt: t.createdAt,
-        updatedAt: t.updatedAt,
-        messageCount: t.messages.length,
-        runners: [...new Set(t.messages.map(m => m.runner).filter((r): r is NonNullable<typeof r> => !!r))],
-        running: t.id === runningThreadId
-      }))
+    return this.db.records<ThreadMeta>('chat_threads', 'WHERE project_id = ?', projectId)
+      .map(meta => {
+        const thread = this.get(projectId, meta.id);
+        return {
+          id: thread.id, title: thread.title, createdAt: thread.createdAt, updatedAt: thread.updatedAt,
+          messageCount: thread.messages.length,
+          runners: [...new Set(thread.messages.map(message => message.runner).filter(runner => runner !== null))],
+          running: thread.id === runningThreadId
+        };
+      })
       .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   }
 
   get(projectId: string, threadId: string): ChatThread {
-    const thread = this.load(projectId).threads.find(t => t.id === threadId);
-    if (!thread) throw new NotFoundError(`Chat ${threadId} not found`);
-    return thread;
+    const [meta] = this.db.records<ThreadMeta>('chat_threads', 'WHERE id = ? AND project_id = ?', threadId, projectId);
+    if (!meta) throw new NotFoundError(`Chat ${threadId} not found`);
+    const running = this.running.get(threadId);
+    if (running) {
+      // A diagram may have been deleted during the run. Keep the callback's
+      // message objects, but clear references that SQLite has already cleared.
+      for (const message of running.messages) {
+        if (message.diagramId && !this.db.get('SELECT id FROM diagrams WHERE id = ?', message.diagramId)) message.diagramId = null;
+      }
+      return running;
+    }
+    return { ...meta, messages: this.db.threadMessages(threadId).map(normalizeMessage) };
   }
 
   create(projectId: string, title?: string): ChatThread {
-    const file = this.load(projectId);
+    if (!this.db.get('SELECT id FROM projects WHERE id = ?', projectId)) throw new NotFoundError(`Project ${projectId} not found`);
     const createdAt = nowIso();
     const thread: ChatThread = { id: randomUUID(), projectId, title: title?.trim() || 'New chat', createdAt, updatedAt: createdAt, sessions: {}, messages: [] };
-    file.threads.push(thread);
-    this.save(projectId);
+    this.save(projectId, thread);
     return thread;
   }
 
   rename(projectId: string, threadId: string, title: string): ChatThread {
     const thread = this.get(projectId, threadId);
     thread.title = title.trim().slice(0, 120) || thread.title;
-    this.save(projectId);
+    this.save(projectId, thread);
     return thread;
   }
 
   delete(projectId: string, threadId: string): void {
-    const file = this.load(projectId);
     const thread = this.get(projectId, threadId);
-    file.threads = file.threads.filter(t => t.id !== threadId);
-    this.save(projectId);
-    for (const message of thread.messages) fs.rmSync(this.runLogPath(projectId, message.id), { force: true });
+    this.db.run('DELETE FROM chat_threads WHERE id = ? AND project_id = ?', threadId, projectId);
+    this.running.delete(threadId);
+    for (const message of thread.messages) fs.rmSync(path.join(this.projectDir(projectId), 'runs', `${message.id}.log`), { force: true });
   }
 
   forget(projectId: string): void {
-    this.cache.delete(projectId);
+    for (const [id, thread] of this.running) if (thread.projectId === projectId) this.running.delete(id);
   }
 }
 

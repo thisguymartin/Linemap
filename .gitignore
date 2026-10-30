@@ -27,6 +27,18 @@ playwright-report/
 .impeccable/live/
 .impeccable/*.local.json
 
-# Workspace data: committed on purpose so diagrams travel with the repo.
-# Uncomment to keep it local instead.
-# data/
+# Local workspace database, sidecars, run logs and exports
+.local/
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Legacy JSON is preserved for recovery; do not add new runtime files.
+data/

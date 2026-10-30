@@ -5,7 +5,7 @@ import type { ServerElement, ExcalidrawFile } from '../types.js';
 // A Project is the aggregate root: one domain the user is thinking about
 // ("how a water heater works", "order pipeline"). It owns Diagrams, Notes
 // and Links. Diagrams own Versions. The live canvas is always one diagram's
-// working copy; everything else lives on disk under the data directory.
+// working copy; stored records live in the local SQLite database.
 
 export interface DiagramScene {
   elements: ServerElement[];

@@ -1,6 +1,6 @@
 # Linemap
 
-Linemap (package `linemap`, repo folder `excalidraw_mcp`) is a self-hosted Excalidraw workbench for AI agents: canvas server (Express 5 + WebSocket) + MCP stdio server + CLI, with a file-backed workspace (projects → diagrams → versions, notes, links). Started from yctimlin/mcp_excalidraw; the workspace layer and the browser UI are ours.
+Linemap (package `linemap`) is a self-hosted Excalidraw workbench for AI agents: canvas server (Express 5 + WebSocket) + MCP stdio server + CLI, with a local SQLite workspace (projects → diagrams → versions, notes, links). Started from yctimlin/mcp_excalidraw; the workspace layer and the browser UI are ours.
 
 ## Commands
 
@@ -14,10 +14,10 @@ Linemap (package `linemap`, repo folder `excalidraw_mcp`) is a self-hosted Excal
 ## Layout
 
 - `src/server.ts` entry → `src/server/app.ts` (routes, WebSocket) · `src/server/live-scene.ts` is the one live canvas (elements/files maps; `markSceneDirty()` after every mutation)
-- `src/domain/` model, `store.ts` (atomic JSON writes under `data/`), `workspace.ts` (active diagram, autosave, versions, tags), `context.ts` (the markdown "brain")
+- `src/domain/` model, `store.ts` (SQLite records under `.local/linemap.db`), `database.ts` (schema and runtime drivers), `import-json.ts` (transactional legacy import), `workspace.ts` (active diagram, autosave, versions, tags), `context.ts` (the markdown "brain")
 - `src/core/` drawing toolkit from upstream + `workspace-client.ts`, `mcp-workspace-tools.ts`, `mcp-workspace-dispatch.ts`
 - `src/cli/commands/workspace.ts` project/diagram/version/note/link/tag/context subcommands
-- `src/agent/` chat with local CLIs: `runners.ts` (find claude/codex), `prompt.ts` (rules + per-turn context), `manager.ts` (spawn, parse stream-json / codex --json, resume, cancel), `chat-store.ts` (`chat.json`: threads, each with per-CLI session ids; run logs in `runs/`)
+- `src/agent/` chat with local CLIs: `runners.ts` (find claude/codex), `prompt.ts` (rules + per-turn context), `manager.ts` (spawn, parse stream-json / codex --json, resume, cancel), `chat-store.ts` (SQLite threads/messages with per-CLI session IDs; local run logs in `runs/`)
 - `src/server/guard.ts` rejects foreign Origin/Host; agents and `/api/fs` only exist on a loopback bind
 - `frontend/src/` React 19: `workspace.tsx` (socket + active diagram store), `pages/CanvasPage.tsx` (Excalidraw + sync; the sync/scene-protection logic is ported from upstream and covered by `tests/browser`), `components/` panel tabs, station line, transit map; `styles.css` holds every token
 
@@ -29,6 +29,7 @@ Linemap (package `linemap`, repo folder `excalidraw_mcp`) is a self-hosted Excal
 - Drawing tools always act on the active diagram; never add a second live scene.
 - Every live-scene mutation calls `markSceneDirty()`; versions are explicit, autosave is implicit.
 - Element tags/notes live in Excalidraw `customData` (`tags`, `note`); keep it that way so exports carry them.
+- SQLite uses built-in `bun:sqlite` / `node:sqlite` (Node >=22.13). Default data is ignored `.local/`; `data/` is a one-time import source. Preserve source JSON during import and deletion.
 - Tests must point servers at a temp `EXCALIDRAW_DATA_DIR`; never write to `./data` from tests.
 - Agents stay read-only on user code: Claude `--allowedTools mcp__excalidraw Read Grep Glob --permission-mode dontAsk`, Codex `sandbox_mode="read-only"`. Never add Bash/Edit/Write or a bypass flag. `scripts/check-agent.mjs` asserts this.
 - CLI name collision: `version` is a subcommand; the package version is `--version`/`-v` only.

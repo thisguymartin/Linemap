@@ -57,7 +57,7 @@ export function createExcalidrawMcpServer(ctx?: McpRequestContext): McpServer {
     );
   }
 
-  logger.debug('Built Excalidraw MCP server instance', {
+  logger.debug('Built Linemap MCP server instance', {
     era: ctx?.era ?? 'unknown',
     toolCount: tools.length
   });

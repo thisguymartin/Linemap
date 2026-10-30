@@ -116,6 +116,7 @@ export class Workspace {
         elementCount: saved.elementCount
       });
     } catch (error) {
+      this.dirty = true;
       logger.error('Autosave failed:', error);
     }
   }
@@ -126,7 +127,7 @@ export class Workspace {
     const diagram = this.store.getDiagram(diagramId);
     if (diagram.id === this.activeDiagramId) {
       this.flush();
-      return diagram;
+      return this.store.getDiagram(diagramId);
     }
     this.flush();
     this.store.setActiveDiagram(diagram.id);

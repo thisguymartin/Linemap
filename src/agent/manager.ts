@@ -95,7 +95,11 @@ export class AgentManager {
   private emitTimers = new Map<string, NodeJS.Timeout>();
 
   constructor(private readonly workspace: Workspace, private readonly options: AgentManagerOptions) {
-    this.chat = new ChatStore(projectId => workspace.store.projectDir(projectId));
+    this.chat = new ChatStore(
+      workspace.store.db,
+      projectId => workspace.store.projectDir(projectId),
+      projectId => path.join(workspace.store.legacyDataDir, 'projects', projectId)
+    );
   }
 
   runningThread(projectId: string): string | null {
@@ -178,7 +182,7 @@ export class AgentManager {
     thread.messages.push(user, assistant);
     if (thread.title === 'New chat') thread.title = titleFrom(thread.messages);
     thread.updatedAt = createdAt;
-    this.chat.save(project.id);
+    this.chat.save(project.id, thread);
     broadcast({ type: 'chat_event', projectId: project.id, threadsChanged: true });
 
     const logPath = this.chat.runLogPath(project.id, assistant.id);
@@ -255,7 +259,7 @@ export class AgentManager {
       }
       if (!assistant.text && assistant.status === 'done') assistant.text = '(no reply)';
       thread.updatedAt = assistant.finishedAt;
-      this.chat.save(project.id);
+      this.chat.save(project.id, thread);
       run.log?.end(`\n# ---- exit ${code ?? 'signal'} · ${assistant.status}${assistant.error ? ` · ${assistant.error}` : ''} · ${assistant.durationMs} ms ----\n`);
       this.emit(assistant, true);
       broadcast({ type: 'chat_event', projectId: project.id, threadsChanged: true });
@@ -551,7 +555,7 @@ export class AgentManager {
   private rememberSession(thread: ChatThread, runner: RunnerId, sessionId: string): void {
     if (thread.sessions[runner] === sessionId) return;
     thread.sessions[runner] = sessionId;
-    this.chat.save(thread.projectId);
+    this.chat.save(thread.projectId, thread);
   }
 
   private stderrSummary(stderr: string): string {

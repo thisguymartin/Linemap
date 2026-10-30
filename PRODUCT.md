@@ -1,4 +1,4 @@
-# Product
+# Linemap product
 
 <!-- impeccable:product-schema 1 -->
 
@@ -16,12 +16,12 @@ Linemap is a self-hosted Excalidraw workbench that an AI agent and a human share
 
 ## Positioning
 
-Unlike the official Excalidraw MCP (prompt in, picture out) or a bare canvas server (one scene in memory), this is a persistent, versioned, conversational workbench: projects group diagrams into a domain, versions are explicit and confirmable, and the conversation lives next to the shapes it is about. Runs locally on Node with JSON on disk; no cloud, no account, no Cloudflare.
+Unlike the official Excalidraw MCP (prompt in, picture out) or a bare canvas server (one scene in memory), this is a persistent, versioned, conversational workbench: projects group diagrams into a domain, versions are explicit and confirmable, and the conversation lives next to the shapes it is about. Runs locally on Bun or Node with SQLite on disk; no cloud, no account, no Cloudflare.
 
 ## Operating Context
 
 - Local Node server (Express + WebSocket) on 127.0.0.1:3000 serving the browser UI and the REST API; MCP stdio server and CLI drive the same server.
-- Data lives in `<repo>/data` as JSON (projects/diagrams/versions/notes/links), git-friendly.
+- Data lives in `<repo>/.local/linemap.db` (projects/diagrams/versions/notes/links/chats), ignored by git.
 - The agent draws programmatically (batch create, update, align, screenshot) while the human watches the tab and annotates; the human saves/confirms versions and leaves notes; the agent reads notes and the project context.
 - Excalidraw itself (0.18) is the editor; its own toolbar, library, theme, and shortcuts stay as they are.
 

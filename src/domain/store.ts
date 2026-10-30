@@ -22,20 +22,8 @@ import {
   slugify
 } from './model.js';
 
-// File-backed repository for the workspace. Everything is plain JSON under
-// the data directory so a project can be committed to git, diffed, or
-// backed up by copying a folder:
-//
-//   <dataDir>/workspace.json
-//   <dataDir>/projects/<projectId>/project.json
-//   <dataDir>/projects/<projectId>/notes.json
-//   <dataDir>/projects/<projectId>/links.json
-//   <dataDir>/projects/<projectId>/diagrams/<diagramId>/diagram.json
-//   <dataDir>/projects/<projectId>/diagrams/<diagramId>/versions/<nnnn>-<versionId>.json
-//
-// Reads come from memory (the whole index is loaded at startup); writes go
-// through atomically (tmp file + rename) so a crash never leaves a half
-// written diagram behind.
+import { LocalDatabase } from './database.js';
+import { importLegacyJson } from './import-json.js';
 
 import { NotFoundError, ValidationError } from './errors.js';
 import { normalizeRootPath } from './folder.js';
@@ -44,40 +32,6 @@ export { NotFoundError, ValidationError };
 
 function nowIso(): string {
   return new Date().toISOString();
-}
-
-function writeJsonAtomic(file: string, value: unknown): void {
-  fs.mkdirSync(path.dirname(file), { recursive: true });
-  const tmp = `${file}.${process.pid}.${Date.now()}.tmp`;
-  fs.writeFileSync(tmp, JSON.stringify(value, null, 2), 'utf-8');
-  fs.renameSync(tmp, file);
-}
-
-function readJson<T>(file: string): T | null {
-  try {
-    return JSON.parse(fs.readFileSync(file, 'utf-8')) as T;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
-      logger.warn(`Could not read ${file}: ${(error as Error).message}`);
-    }
-    return null;
-  }
-}
-
-function listDirs(dir: string): string[] {
-  try {
-    return fs.readdirSync(dir, { withFileTypes: true }).filter(d => d.isDirectory()).map(d => d.name);
-  } catch {
-    return [];
-  }
-}
-
-function listFiles(dir: string, ext: string): string[] {
-  try {
-    return fs.readdirSync(dir).filter(f => f.endsWith(ext)).sort();
-  } catch {
-    return [];
-  }
 }
 
 function requireName(value: unknown, what: string): string {
@@ -131,117 +85,55 @@ export interface LinkInput {
 
 export class WorkspaceStore {
   readonly dataDir: string;
-  private projects = new Map<string, Project>();
-  private diagrams = new Map<string, Diagram>();
-  private versions = new Map<string, VersionMeta>();
-  private notes = new Map<string, Note>();
-  private links = new Map<string, Link>();
-  private state: WorkspaceState = { activeDiagramId: null };
+  readonly db: LocalDatabase;
 
-  constructor(dataDir: string) {
+  constructor(dataDir: string, readonly legacyDataDir = dataDir) {
     this.dataDir = dataDir;
+    this.db = new LocalDatabase(dataDir);
   }
-
-  // ---- paths ------------------------------------------------------------
 
   projectDir(projectId: string): string {
     return path.join(this.dataDir, 'projects', projectId);
   }
 
-  private diagramDir(projectId: string, diagramId: string): string {
-    return path.join(this.projectDir(projectId), 'diagrams', diagramId);
-  }
-
-  private versionFile(version: VersionMeta): string {
-    const number = String(version.number).padStart(4, '0');
-    return path.join(this.diagramDir(version.projectId, version.diagramId), 'versions', `${number}-${version.id}.json`);
-  }
-
-  private workspaceFile(): string {
-    return path.join(this.dataDir, 'workspace.json');
-  }
-
-  // ---- loading ----------------------------------------------------------
-
   load(): void {
-    fs.mkdirSync(this.dataDir, { recursive: true });
-    this.projects.clear();
-    this.diagrams.clear();
-    this.versions.clear();
-    this.notes.clear();
-    this.links.clear();
-
-    for (const projectId of listDirs(path.join(this.dataDir, 'projects'))) {
-      const project = readJson<Project>(path.join(this.projectDir(projectId), 'project.json'));
-      if (!project || project.id !== projectId) continue;
-      project.rootPath ??= null;
-      this.projects.set(project.id, project);
-
-      for (const note of readJson<Note[]>(path.join(this.projectDir(projectId), 'notes.json')) ?? []) {
-        this.notes.set(note.id, note);
-      }
-      for (const link of readJson<Link[]>(path.join(this.projectDir(projectId), 'links.json')) ?? []) {
-        this.links.set(link.id, link);
-      }
-
-      for (const diagramId of listDirs(path.join(this.projectDir(projectId), 'diagrams'))) {
-        const diagram = readJson<Diagram>(path.join(this.diagramDir(projectId, diagramId), 'diagram.json'));
-        if (!diagram || diagram.id !== diagramId) continue;
-        diagram.scene ??= emptyScene();
-        diagram.scene.elements ??= [];
-        diagram.scene.files ??= {};
-        this.diagrams.set(diagram.id, diagram);
-
-        const versionsDir = path.join(this.diagramDir(projectId, diagramId), 'versions');
-        for (const file of listFiles(versionsDir, '.json')) {
-          const version = readJson<Version>(path.join(versionsDir, file));
-          if (!version || version.diagramId !== diagramId) continue;
-          const { scene: _scene, ...meta } = version;
-          this.versions.set(version.id, meta);
-        }
-        this.refreshDiagramVersionStats(diagram);
-      }
+    importLegacyJson(this.db, this.legacyDataDir);
+    for (const project of this.db.records<Project>('projects')) {
+      fs.mkdirSync(this.projectDir(project.id), { recursive: true });
     }
+    logger.info('Workspace loaded', { database: this.db.filename });
+  }
 
-    const state = readJson<WorkspaceState>(this.workspaceFile());
-    this.state = {
-      activeDiagramId: state?.activeDiagramId && this.diagrams.has(state.activeDiagramId) ? state.activeDiagramId : null
-    };
-
-    logger.info(`Workspace loaded from ${this.dataDir}`, {
-      projects: this.projects.size,
-      diagrams: this.diagrams.size,
-      versions: this.versions.size
-    });
+  close(): void {
+    this.db.close();
   }
 
   // ---- workspace state ---------------------------------------------------
 
   getState(): WorkspaceState {
-    return { ...this.state };
+    return { activeDiagramId: this.db.get<{ active_diagram_id: string | null }>('SELECT active_diagram_id FROM workspace WHERE id = 1')!.active_diagram_id };
   }
 
   setActiveDiagram(diagramId: string | null): void {
     if (diagramId !== null) this.requireDiagram(diagramId);
-    this.state = { activeDiagramId: diagramId };
-    writeJsonAtomic(this.workspaceFile(), this.state);
+    this.db.run('UPDATE workspace SET active_diagram_id = ? WHERE id = 1', diagramId);
   }
 
   // ---- projects -----------------------------------------------------------
 
   listProjects(): ProjectSummary[] {
-    return [...this.projects.values()]
+    return this.db.records<Project>('projects')
       .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
       .map(project => this.summarize(project));
   }
 
   private summarize(project: Project): ProjectSummary {
-    let diagramCount = 0;
-    for (const diagram of this.diagrams.values()) if (diagram.projectId === project.id) diagramCount++;
-    let noteCount = 0;
-    for (const note of this.notes.values()) if (note.projectId === project.id) noteCount++;
-    let linkCount = 0;
-    for (const link of this.links.values()) if (link.projectId === project.id) linkCount++;
+    const count = (table: 'diagrams' | 'notes' | 'links'): number => this.db.get<{ count: number }>(
+      `SELECT count(*) AS count FROM ${table} WHERE project_id = ?`, project.id
+    )!.count;
+    const diagramCount = count('diagrams');
+    const noteCount = count('notes');
+    const linkCount = count('links');
     return { ...project, diagramCount, noteCount, linkCount };
   }
 
@@ -255,10 +147,10 @@ export class WorkspaceStore {
   }
 
   findProject(ref: string): Project | null {
-    const byId = this.projects.get(ref);
+    const [byId] = this.db.records<Project>('projects', 'WHERE id = ?', ref);
     if (byId) return byId;
     const needle = ref.trim().toLowerCase();
-    for (const project of this.projects.values()) {
+    for (const project of this.db.records<Project>('projects')) {
       if (project.slug === needle || project.name.toLowerCase() === needle) return project;
     }
     return null;
@@ -269,7 +161,7 @@ export class WorkspaceStore {
     const baseSlug = slugify(name);
     let slug = baseSlug;
     let n = 2;
-    while ([...this.projects.values()].some(p => p.slug === slug)) slug = `${baseSlug}-${n++}`;
+    while (this.db.records<Project>('projects').some(p => p.slug === slug)) slug = `${baseSlug}-${n++}`;
     const createdAt = nowIso();
     const project: Project = {
       id: newId('p'),
@@ -279,13 +171,13 @@ export class WorkspaceStore {
       tags: normalizeTags(input.tags),
       color: typeof input.color === 'string' && /^#[0-9a-f]{6}$/i.test(input.color)
         ? input.color
-        : DEFAULT_PROJECT_COLORS[this.projects.size % DEFAULT_PROJECT_COLORS.length]!,
+        : DEFAULT_PROJECT_COLORS[this.db.records<Project>('projects').length % DEFAULT_PROJECT_COLORS.length]!,
       rootPath: normalizeRootPath(input.rootPath),
       createdAt,
       updatedAt: createdAt
     };
-    this.projects.set(project.id, project);
     this.writeProject(project);
+    fs.mkdirSync(this.projectDir(project.id), { recursive: true });
     return project;
   }
 
@@ -304,29 +196,23 @@ export class WorkspaceStore {
   deleteProject(projectId: string): { diagramIds: string[] } {
     const project = this.requireProject(projectId);
     const diagramIds = this.listDiagrams(projectId).map(d => d.id);
-    for (const id of diagramIds) this.diagrams.delete(id);
-    for (const [id, v] of this.versions) if (v.projectId === projectId) this.versions.delete(id);
-    for (const [id, n] of this.notes) if (n.projectId === projectId) this.notes.delete(id);
-    for (const [id, l] of this.links) if (l.projectId === projectId) this.links.delete(id);
-    this.projects.delete(projectId);
-    fs.rmSync(this.projectDir(project.id), { recursive: true, force: true });
-    if (diagramIds.includes(this.state.activeDiagramId ?? '')) this.setActiveDiagram(null);
+    this.db.run('DELETE FROM projects WHERE id = ?', project.id);
     return { diagramIds };
   }
 
   private touchProject(projectId: string): void {
-    const project = this.projects.get(projectId);
+    const [project] = this.db.records<Project>('projects', 'WHERE id = ?', projectId);
     if (!project) return;
     project.updatedAt = nowIso();
     this.writeProject(project);
   }
 
   private writeProject(project: Project): void {
-    writeJsonAtomic(path.join(this.projectDir(project.id), 'project.json'), project);
+    this.db.put('projects', project);
   }
 
   private requireProject(projectId: string): Project {
-    const project = this.projects.get(projectId);
+    const [project] = this.db.records<Project>('projects', 'WHERE id = ?', projectId);
     if (!project) throw new NotFoundError(`Project ${projectId} not found`);
     return project;
   }
@@ -335,19 +221,18 @@ export class WorkspaceStore {
 
   listDiagrams(projectId: string): DiagramMeta[] {
     this.requireProject(projectId);
-    return [...this.diagrams.values()]
-      .filter(d => d.projectId === projectId)
+    return this.db.records<Diagram>('diagrams', 'WHERE project_id = ?', projectId)
       .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
       .map(d => this.diagramMeta(d));
   }
 
   listAllDiagrams(): DiagramMeta[] {
-    return [...this.diagrams.values()].map(d => this.diagramMeta(d));
+    return this.db.records<Diagram>('diagrams').map(d => this.diagramMeta(d));
   }
 
   diagramMeta(diagram: Diagram): DiagramMeta {
     const { scene: _scene, ...meta } = diagram;
-    return { ...meta, elementCount: diagram.scene.elements.length };
+    return { ...meta, ...this.versionStats(diagram.id), elementCount: diagram.scene.elements.length };
   }
 
   getDiagram(diagramId: string): Diagram {
@@ -355,12 +240,12 @@ export class WorkspaceStore {
   }
 
   findDiagram(projectId: string | null, ref: string): Diagram | null {
-    const byId = this.diagrams.get(ref);
-    if (byId && (projectId === null || byId.projectId === projectId)) return byId;
+    const [byId] = this.db.records<Diagram>('diagrams', 'WHERE id = ?', ref);
+    if (byId && (projectId === null || byId.projectId === projectId)) return this.requireDiagram(byId.id);
     const needle = ref.trim().toLowerCase();
-    for (const diagram of this.diagrams.values()) {
+    for (const diagram of this.db.records<Diagram>('diagrams')) {
       if (projectId !== null && diagram.projectId !== projectId) continue;
-      if (diagram.name.toLowerCase() === needle) return diagram;
+      if (diagram.name.toLowerCase() === needle) return this.requireDiagram(diagram.id);
     }
     return null;
   }
@@ -382,9 +267,10 @@ export class WorkspaceStore {
       latestConfirmedVersion: null,
       scene: input.scene ? structuredClone(input.scene) : emptyScene()
     };
-    this.diagrams.set(diagram.id, diagram);
-    this.writeDiagram(diagram);
-    this.touchProject(projectId);
+    this.db.transaction(() => {
+      this.writeDiagram(diagram);
+      this.touchProject(projectId);
+    });
     return diagram;
   }
 
@@ -394,8 +280,10 @@ export class WorkspaceStore {
     if (patch.description !== undefined) diagram.description = optionalText(patch.description);
     if (patch.tags !== undefined) diagram.tags = normalizeTags(patch.tags);
     diagram.updatedAt = nowIso();
-    this.writeDiagram(diagram);
-    this.touchProject(diagram.projectId);
+    this.db.transaction(() => {
+      this.writeDiagram(diagram);
+      this.touchProject(diagram.projectId);
+    });
     return diagram;
   }
 
@@ -412,100 +300,88 @@ export class WorkspaceStore {
 
   deleteDiagram(diagramId: string): Diagram {
     const diagram = this.requireDiagram(diagramId);
-    this.diagrams.delete(diagramId);
-    for (const [id, v] of this.versions) if (v.diagramId === diagramId) this.versions.delete(id);
-    for (const [id, n] of this.notes) if (n.diagramId === diagramId) this.notes.delete(id);
-    let linksChanged = false;
-    for (const [id, l] of this.links) {
-      if (l.from.diagramId === diagramId || l.to.diagramId === diagramId) {
-        this.links.delete(id);
-        linksChanged = true;
-      }
-    }
-    fs.rmSync(this.diagramDir(diagram.projectId, diagramId), { recursive: true, force: true });
-    this.writeNotes(diagram.projectId);
-    if (linksChanged) this.writeLinks(diagram.projectId);
-    if (this.state.activeDiagramId === diagramId) this.setActiveDiagram(null);
-    this.touchProject(diagram.projectId);
+    this.db.transaction(() => {
+      this.db.run('DELETE FROM diagrams WHERE id = ?', diagramId);
+      this.touchProject(diagram.projectId);
+    });
     return diagram;
   }
 
   private writeDiagram(diagram: Diagram): void {
-    writeJsonAtomic(path.join(this.diagramDir(diagram.projectId, diagram.id), 'diagram.json'), diagram);
+    this.db.put('diagrams', diagram);
   }
 
   private requireDiagram(diagramId: string): Diagram {
-    const diagram = this.diagrams.get(diagramId);
+    const [diagram] = this.db.records<Diagram>('diagrams', 'WHERE id = ?', diagramId);
     if (!diagram) throw new NotFoundError(`Diagram ${diagramId} not found`);
-    return diagram;
+    return { ...diagram, ...this.versionStats(diagramId), elementCount: diagram.scene.elements.length };
   }
 
-  private refreshDiagramVersionStats(diagram: Diagram): void {
-    const versions = [...this.versions.values()].filter(v => v.diagramId === diagram.id);
-    diagram.versionCount = versions.length;
-    diagram.latestVersion = versions.reduce<number | null>((max, v) => (max === null || v.number > max ? v.number : max), null);
-    diagram.latestConfirmedVersion = versions
-      .filter(v => v.confirmed)
-      .reduce<number | null>((max, v) => (max === null || v.number > max ? v.number : max), null);
+  private versionStats(diagramId: string): Pick<DiagramMeta, 'versionCount' | 'latestVersion' | 'latestConfirmedVersion'> {
+    const stats = this.db.get<{ versionCount: number; latestVersion: number | null; latestConfirmedVersion: number | null }>(
+      `SELECT count(*) AS versionCount, max(number) AS latestVersion,
+       max(CASE WHEN json_extract(data, '$.confirmed') = 1 THEN number END) AS latestConfirmedVersion
+       FROM versions WHERE diagram_id = ?`, diagramId
+    )!;
+    return stats;
   }
 
   // ---- versions -----------------------------------------------------------
 
   listVersions(diagramId: string): VersionMeta[] {
     this.requireDiagram(diagramId);
-    return [...this.versions.values()]
-      .filter(v => v.diagramId === diagramId)
-      .sort((a, b) => b.number - a.number);
+    return this.db.records<Version>('versions', 'WHERE diagram_id = ?', diagramId)
+      .sort((a, b) => b.number - a.number)
+      .map(({ scene: _scene, ...meta }) => meta);
   }
 
   getVersion(versionId: string): Version {
-    const meta = this.versions.get(versionId);
-    if (!meta) throw new NotFoundError(`Version ${versionId} not found`);
-    const full = readJson<Version>(this.versionFile(meta));
-    if (!full) throw new NotFoundError(`Version ${versionId} file is missing`);
-    return { ...full, ...meta, scene: full.scene ?? emptyScene() };
+    const [version] = this.db.records<Version>('versions', 'WHERE id = ?', versionId);
+    if (!version) throw new NotFoundError(`Version ${versionId} not found`);
+    return version;
   }
 
   findVersion(diagramId: string, ref: string | number): VersionMeta | null {
-    const byId = typeof ref === 'string' ? this.versions.get(ref) : undefined;
-    if (byId && byId.diagramId === diagramId) return byId;
+    const byId = typeof ref === 'string' ? this.db.records<Version>('versions', 'WHERE id = ?', ref)[0] : undefined;
+    if (byId && byId.diagramId === diagramId) {
+      const { scene: _scene, ...meta } = byId;
+      return meta;
+    }
     const number = typeof ref === 'number' ? ref : Number(String(ref).replace(/^v/i, ''));
     if (!Number.isInteger(number)) return null;
     return this.listVersions(diagramId).find(v => v.number === number) ?? null;
   }
 
   createVersion(diagramId: string, scene: DiagramScene, input: VersionInput): VersionMeta {
-    const diagram = this.requireDiagram(diagramId);
-    const number = (diagram.latestVersion ?? 0) + 1;
-    const createdAt = nowIso();
-    const confirm = input.confirm === true;
-    const version: Version = {
-      id: newId('v'),
-      diagramId,
-      projectId: diagram.projectId,
-      number,
-      label: optionalText(input.label).trim() || `v${number}`,
-      note: optionalText(input.note),
-      author: optionalText(input.author).trim() || 'human',
-      confirmed: confirm,
-      confirmedAt: confirm ? createdAt : null,
-      createdAt,
-      elementCount: scene.elements.length,
-      scene: structuredClone(scene)
-    };
-    writeJsonAtomic(this.versionFile(version), version);
-    const { scene: _scene, ...meta } = version;
-    this.versions.set(version.id, meta);
-    this.refreshDiagramVersionStats(diagram);
-    diagram.updatedAt = createdAt;
-    this.writeDiagram(diagram);
-    this.touchProject(diagram.projectId);
-    return meta;
+    return this.db.transaction(() => {
+      const diagram = this.requireDiagram(diagramId);
+      const number = (diagram.latestVersion ?? 0) + 1;
+      const createdAt = nowIso();
+      const confirm = input.confirm === true;
+      const version: Version = {
+        id: newId('v'),
+        diagramId,
+        projectId: diagram.projectId,
+        number,
+        label: optionalText(input.label).trim() || `v${number}`,
+        note: optionalText(input.note),
+        author: optionalText(input.author).trim() || 'human',
+        confirmed: confirm,
+        confirmedAt: confirm ? createdAt : null,
+        createdAt,
+        elementCount: scene.elements.length,
+        scene: structuredClone(scene)
+      };
+      this.db.put('versions', version);
+      const { scene: _scene, ...meta } = version;
+      diagram.updatedAt = createdAt;
+      this.writeDiagram(diagram);
+      this.touchProject(diagram.projectId);
+      return meta;
+    });
   }
 
   updateVersion(versionId: string, patch: { confirmed?: boolean; label?: string; note?: string }): VersionMeta {
-    const meta = this.versions.get(versionId);
-    if (!meta) throw new NotFoundError(`Version ${versionId} not found`);
     const full = this.getVersion(versionId);
     if (patch.confirmed !== undefined) {
       full.confirmed = patch.confirmed;
@@ -513,27 +389,14 @@ export class WorkspaceStore {
     }
     if (patch.label !== undefined) full.label = optionalText(patch.label).trim() || full.label;
     if (patch.note !== undefined) full.note = optionalText(patch.note);
-    writeJsonAtomic(this.versionFile(meta), full);
+    this.db.put('versions', full);
     const { scene: _scene, ...updated } = full;
-    this.versions.set(versionId, updated);
-    const diagram = this.diagrams.get(meta.diagramId);
-    if (diagram) {
-      this.refreshDiagramVersionStats(diagram);
-      this.writeDiagram(diagram);
-    }
     return updated;
   }
 
   deleteVersion(versionId: string): VersionMeta {
-    const meta = this.versions.get(versionId);
-    if (!meta) throw new NotFoundError(`Version ${versionId} not found`);
-    fs.rmSync(this.versionFile(meta), { force: true });
-    this.versions.delete(versionId);
-    const diagram = this.diagrams.get(meta.diagramId);
-    if (diagram) {
-      this.refreshDiagramVersionStats(diagram);
-      this.writeDiagram(diagram);
-    }
+    const { scene: _scene, ...meta } = this.getVersion(versionId);
+    this.db.run('DELETE FROM versions WHERE id = ?', versionId);
     return meta;
   }
 
@@ -541,15 +404,14 @@ export class WorkspaceStore {
 
   listNotes(projectId: string, filter: { diagramId?: string | null; elementId?: string } = {}): Note[] {
     this.requireProject(projectId);
-    return [...this.notes.values()]
-      .filter(n => n.projectId === projectId)
+    return this.db.records<Note>('notes', 'WHERE project_id = ?', projectId)
       .filter(n => filter.diagramId === undefined || n.diagramId === filter.diagramId)
       .filter(n => filter.elementId === undefined || n.elementIds.includes(filter.elementId))
       .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
   }
 
   getNote(noteId: string): Note {
-    const note = this.notes.get(noteId);
+    const [note] = this.db.records<Note>('notes', 'WHERE id = ?', noteId);
     if (!note) throw new NotFoundError(`Note ${noteId} not found`);
     return note;
   }
@@ -577,9 +439,10 @@ export class WorkspaceStore {
       createdAt,
       updatedAt: createdAt
     };
-    this.notes.set(note.id, note);
-    this.writeNotes(projectId);
-    this.touchProject(projectId);
+    this.db.transaction(() => {
+      this.db.put('notes', note);
+      this.touchProject(projectId);
+    });
     return note;
   }
 
@@ -594,35 +457,27 @@ export class WorkspaceStore {
     if (patch.tags !== undefined) note.tags = normalizeTags(patch.tags);
     if (patch.elementIds !== undefined) note.elementIds = patch.elementIds.filter(id => typeof id === 'string');
     note.updatedAt = nowIso();
-    this.writeNotes(note.projectId);
+    this.db.put('notes', note);
     return note;
   }
 
   deleteNote(noteId: string): Note {
     const note = this.getNote(noteId);
-    this.notes.delete(noteId);
-    this.writeNotes(note.projectId);
+    this.db.run('DELETE FROM notes WHERE id = ?', noteId);
     return note;
-  }
-
-  private writeNotes(projectId: string): void {
-    if (!this.projects.has(projectId)) return;
-    const notes = [...this.notes.values()].filter(n => n.projectId === projectId);
-    writeJsonAtomic(path.join(this.projectDir(projectId), 'notes.json'), notes);
   }
 
   // ---- links --------------------------------------------------------------
 
   listLinks(projectId: string, diagramId?: string): Link[] {
     this.requireProject(projectId);
-    return [...this.links.values()]
-      .filter(l => l.projectId === projectId)
+    return this.db.records<Link>('links', 'WHERE project_id = ?', projectId)
       .filter(l => diagramId === undefined || l.from.diagramId === diagramId || l.to.diagramId === diagramId)
       .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
   }
 
   getLink(linkId: string): Link {
-    const link = this.links.get(linkId);
+    const [link] = this.db.records<Link>('links', 'WHERE id = ?', linkId);
     if (!link) throw new NotFoundError(`Link ${linkId} not found`);
     return link;
   }
@@ -643,16 +498,16 @@ export class WorkspaceStore {
       note: optionalText(input.note),
       createdAt: nowIso()
     };
-    this.links.set(link.id, link);
-    this.writeLinks(projectId);
-    this.touchProject(projectId);
+    this.db.transaction(() => {
+      this.db.put('links', link);
+      this.touchProject(projectId);
+    });
     return link;
   }
 
   deleteLink(linkId: string): Link {
     const link = this.getLink(linkId);
-    this.links.delete(linkId);
-    this.writeLinks(link.projectId);
+    this.db.run('DELETE FROM links WHERE id = ?', linkId);
     return link;
   }
 
@@ -665,9 +520,4 @@ export class WorkspaceStore {
     return normalized;
   }
 
-  private writeLinks(projectId: string): void {
-    if (!this.projects.has(projectId)) return;
-    const links = [...this.links.values()].filter(l => l.projectId === projectId);
-    writeJsonAtomic(path.join(this.projectDir(projectId), 'links.json'), links);
-  }
 }

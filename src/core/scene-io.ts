@@ -34,7 +34,7 @@ export async function buildSceneFile(): Promise<ExportedScene> {
   const excalidrawScene: Record<string, any> = {
     type: 'excalidraw',
     version: 2,
-    source: 'mcp-excalidraw-server',
+    source: 'linemap',
     elements: exportElements,
     appState: {
       viewBackgroundColor: '#ffffff',

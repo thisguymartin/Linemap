@@ -72,7 +72,7 @@ The Chat tab and the folder browser only work when the canvas server listens on 
 
 ## Logs
 
-Every reply has View log, which shows that run's raw CLI output: the arguments and prompt it was started with, every event, anything on stderr, and the exit code. The files are in `data/projects/<project>/runs/`.
+Every reply has View log, which shows that run's raw CLI output: the arguments and prompt it was started with, every event, anything on stderr, and the exit code. The files are in `.local/projects/<project>/runs/` (or under `EXCALIDRAW_DATA_DIR`).
 
 The server log records one line when a run starts and one when it finishes or fails:
 

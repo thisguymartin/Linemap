@@ -1,6 +1,6 @@
-# excalidraw-mcp
+# Linemap
 
-A local Excalidraw canvas that you and your coding agents share. You draw and annotate in the browser. Claude Code, Codex or any MCP client draws on the same canvas from your terminal, or from a chat panel inside the page. Everything is saved as plain JSON in this repo, so a project's diagrams, versions and conversation are still there next week.
+A local Excalidraw canvas that you and your coding agents share. You draw and annotate in the browser. Claude Code, Codex or any MCP client draws on the same canvas from your terminal, or from a chat panel inside the page. Workspace data is saved locally in SQLite, outside git, so a project's diagrams, versions and conversation are still there next week.
 
 ![The canvas with the Chat tab: Claude Code drew the diagram from the repo's source, then Codex added a note in the same chat](docs/images/chat.png)
 
@@ -17,6 +17,12 @@ bun dist/bin.js up --open
 ```
 
 `up` runs the canvas server in your terminal with its log and opens the browser on `http://127.0.0.1:3000`. Ctrl-C stops it. The first run creates a Scratchpad project with one empty diagram. The page opens straight onto it.
+
+Data stays in `.local/linemap.db`, which git ignores along with its sidecar files,
+run logs, and exports. On the first start, Linemap imports the previous `data/`
+JSON workspace in one transaction and leaves those files intact for recovery.
+Stop any older running server before switching. Set `EXCALIDRAW_DATA_DIR` to
+choose another storage directory. Node users need 22.13 or newer.
 
 Other ways to run it are in [docs/reference.md](docs/reference.md#running-the-server): quiet or verbose logs, another port, in the background.
 
@@ -48,14 +54,14 @@ The project page draws the whole project as a transit line. Each diagram is a st
 - **From an MCP client.** Claude Code, Codex, Cursor or Claude Desktop connect to `bun dist/bin.js` over stdio and get 52 tools: 26 for drawing, 26 for projects, diagrams, versions, notes, tags and links.
 - **From the CLI.** The same operations as shell commands with JSON output, for scripts and quick edits.
 
-All three talk to one canvas server, which keeps the live diagram and writes everything under `data/`. [docs/how-it-works.md](docs/how-it-works.md) covers the processes, the data layout and the safety rules.
+All three talk to one canvas server, which keeps the live diagram in memory and persists the workspace in `.local/linemap.db`. [docs/how-it-works.md](docs/how-it-works.md) covers the processes, the data layout and the safety rules.
 
 ## Connect your agent
 
 This repo has an `.mcp.json`, so Claude Code opened here already has the `excalidraw` server. Anywhere else:
 
 ```bash
-claude mcp add excalidraw --scope user -- bun /absolute/path/to/excalidraw_mcp/dist/bin.js
+claude mcp add excalidraw --scope user -- bun /absolute/path/to/linemap/dist/bin.js
 ```
 
 For Codex, Cursor and Claude Desktop, use the same command in their MCP settings; `claude_desktop_config.example.json` has the shape. The MCP server starts the canvas on its own if nothing is listening.

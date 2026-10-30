@@ -15,9 +15,11 @@ export const EXCALIDRAW_NO_AUTOSTART = process.env.EXCALIDRAW_NO_AUTOSTART === '
 // Safe file path validation base directory (see sanitizeFilePath)
 export const ALLOWED_EXPORT_DIR = process.env.EXCALIDRAW_EXPORT_DIR || process.cwd();
 
-// Where projects, diagrams, versions and notes live. Defaults to <repo>/data so
-// the workspace travels with the checkout; point EXCALIDRAW_DATA_DIR elsewhere
-// to share one workspace across clones.
+// Local database, run logs and exports. A custom directory is also the source
+// for a one-time legacy JSON import; the default imports the old repo data/.
 export const DATA_DIR = process.env.EXCALIDRAW_DATA_DIR
   ? path.resolve(process.env.EXCALIDRAW_DATA_DIR)
+  : path.join(packageRoot(), '.local');
+export const LEGACY_DATA_DIR = process.env.EXCALIDRAW_DATA_DIR
+  ? DATA_DIR
   : path.join(packageRoot(), 'data');

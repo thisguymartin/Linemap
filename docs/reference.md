@@ -16,7 +16,7 @@
 
 Ctrl-C stops `up`. If a server is already running on the port, `up` attaches to its log instead of starting a second one. Use `--url http://127.0.0.1:3100` with `start`, `stop` and `status` for a port other than 3000.
 
-`bun serve`, `bun serve:quiet` and `bun logs` are shortcuts in `package.json`. Run `bun link` once in the repo to get an `excalidraw-mcp` command you can use from any folder.
+`bun serve`, `bun serve:quiet` and `bun logs` are shortcuts in `package.json`. Run `bun link` once in the repo to get a `linemap` command you can use from any folder.
 
 The browser app lives at `/`, which opens the diagram currently on the canvas. `/p/<project>` is a project's map and `/projects` lists every project.
 
@@ -98,13 +98,13 @@ WebSocket clients receive element changes plus `workspace_event` messages (`acti
 |----------|---------|---------|
 | `PORT`, `HOST` | `3000`, `127.0.0.1` | Where the canvas server listens |
 | `EXPRESS_SERVER_URL` | `http://127.0.0.1:3000` | Where the MCP server and the CLI find the canvas |
-| `EXCALIDRAW_DATA_DIR` | `<repo>/data` | Where projects are stored |
+| `EXCALIDRAW_DATA_DIR` | `<repo>/.local` | Directory containing `linemap.db`, run logs and exports; existing JSON here is imported once |
 | `EXCALIDRAW_NO_AUTOSTART` | unset | `1` stops the MCP server and CLI from starting the canvas |
 | `EXCALIDRAW_EXPORT_DIR` | current folder | Folder that file exports may write to |
 | `EXCALIDRAW_CLAUDE_BIN`, `EXCALIDRAW_CODEX_BIN` | found automatically | Agent CLIs for the Chat tab |
 | `EXCALIDRAW_AGENT_TIMEOUT_MS` | `900000` (15 min) | How long a chat run may take |
 | `LOG_LEVEL` | `info` | Level written to the log file |
-| `LOG_FILE_PATH` | `~/Library/Logs/excalidraw-workbench.log` on macOS | Log file |
+| `LOG_FILE_PATH` | `~/Library/Logs/linemap.log` on macOS | Log file |
 
 ## Night theme
 

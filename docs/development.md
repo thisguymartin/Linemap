@@ -19,7 +19,7 @@ bun run type-check   # tsc, no output files
 
 The browser app stays on Vite because Excalidraw loads its font subsets by file name, and Vite's chunk naming keeps those names stable.
 
-Bun runs the bundle, and so does Node 20.19 or newer: `node dist/bin.js …`, `up --node`, or `bun run test:node`. That matters for MCP clients that can only launch `node`. Child processes (the canvas server, the PNG worker, the MCP server handed to chat runs) use whichever runtime started their parent.
+Bun runs the bundle, and so does Node 22.13 or newer: `node dist/bin.js …`, `up --node`, or `bun run test:node`. The SQLite drivers are built into both runtimes (`bun:sqlite` and `node:sqlite`); no native addon install is needed. Node 20 is no longer supported. That matters for MCP clients that can only launch `node`. Child processes (the canvas server, the PNG worker, the MCP server handed to chat runs) use whichever runtime started their parent.
 
 ## Working on it
 
@@ -41,6 +41,7 @@ bun run test:canvas    # Playwright, in Chromium (bunx playwright install chromi
 
 | Suite | Checks |
 |-------|--------|
+| `check-storage` | SQLite import/retry, relationships, rollback, chat history, cross-connection reads and schema versions |
 | `check-mcp-stdio` | MCP over stdio, old and new protocol versions |
 | `check-local-bind` | The server binds to loopback only and refuses duplicate starts |
 | `check-render` | Headless SVG and PNG rendering, fonts, frames, determinism |

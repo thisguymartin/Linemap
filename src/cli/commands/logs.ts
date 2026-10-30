@@ -4,7 +4,7 @@ import { RESOLVED_LOG_FILE_PATH } from '../../utils/logger.js';
 
 // Print (and optionally follow) the canvas server's log. Agent runs log one
 // line when they start and one when they finish or fail; each run's raw CLI
-// output is in data/projects/<project>/runs/<message>.log ("View log" in Chat).
+// output is in .local/projects/<project>/runs/<message>.log ("View log" in Chat).
 export async function logs(argv: string[]): Promise<void> {
   const { flags } = parseArgs(argv, {
     lines: { takesValue: true }, n: { takesValue: true }, follow: { takesValue: false }, f: { takesValue: false },

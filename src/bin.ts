@@ -1,7 +1,6 @@
 #!/usr/bin/env bun
 
-// Single bin entry for both package bins (mcp-excalidraw-server and
-// excalidraw-canvas):
+// Single entry for Linemap and the legacy excalidraw-mcp alias:
 //
 //   no arguments  -> MCP stdio server (backward compatible with MCP clients)
 //   <subcommand>  -> CLI

@@ -13,6 +13,9 @@ import WebSocket from 'ws';
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
 const port = 37000 + Math.floor(Math.random() * 1000);
 const base = `http://127.0.0.1:${port}`;
+process.env.EXPRESS_SERVER_URL = base;
+process.env.EXCALIDRAW_NO_AUTOSTART = '1';
+const { LocalDatabase } = await import('../dist/testing.js');
 const dataDir = fs.mkdtempSync(join(os.tmpdir(), 'excalidraw-agent-'));
 const repoParent = fs.mkdtempSync(join(os.tmpdir(), 'excalidraw-agent-repos-'));
 const repoDir = join(repoParent, 'heater');
@@ -234,8 +237,12 @@ try {
     assert(fs.existsSync(logPath), 'run log missing');
     await ok('DELETE', `/api/projects/${state.pid}/chats/${state.tid2}`);
     assert(!fs.existsSync(logPath), 'run log not removed');
-    const saved = JSON.parse(fs.readFileSync(join(dataDir, 'projects', state.pid, 'chat.json'), 'utf-8'));
-    assert(saved.threads.length === 1 && saved.threads[0].sessions.claude && saved.threads[0].sessions.codex, 'chat.json shape');
+    const db = new LocalDatabase(dataDir);
+    try {
+      const threads = db.records('chat_threads', 'WHERE project_id = ?', state.pid);
+      assert(threads.length === 1 && threads[0].sessions.claude && threads[0].sessions.codex, 'persisted chat sessions');
+      assert(db.threadMessages(threads[0].id).length > 0, 'persisted messages missing');
+    } finally { db.close(); }
   });
 
   await check('MCP link_project_folder, CLI project link/unlink, CLI short flags', async () => {
